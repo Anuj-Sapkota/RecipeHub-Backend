@@ -4,61 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
          <script src="https://cdn.tailwindcss.com"></script>
+         <style>
+          html, body{
+             height: 100%;
+             margin: 0;
+             padding: 0;
+           }
+         </style>
          <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   />
     <title>RecipeHub - Admin Dashboard</title>
 </head>
-<body>
-     <div class='bg-[#1C2135] w-screen h-screen text-white'>
-      <div class='flex justify-between items-center shadow shadow-gray-600 w-full py-2 px-4'>
-        <div class='cursor-pointer'><h1 class='text-2xl'>=</h1></div>
-        <div class='relative flex items-center '><input class="bg-[#38485B] rounded-md text-sm px-2 py-1 outline-none" type='search' placeholder='Search'/>
-        <!-- {/* There will be a magnifying glass icon */} -->
-        <h1 class='absolute right-2 top-1'>*</h1>
+<body class="min-h-screen">
+     <div class="bg-[#1C2135] w-full h-full text-white">
+      <div class="flex justify-between items-center shadow shadow-gray-600 w-full py-2 px-4">
+        <div class="cursor-pointer">
+          <h1 class="text-2xl">=</h1>
         </div>
-        <div class='size-[2rem] rounded-full cursor-pointer'>
+        <div class="relative flex items-center ">
+          <input
+            class="bg-[#38485B] rounded-md text-sm px-2 py-1 outline-none"
+            type="search"
+            placeholder="Search"
+          />
+          <!-- {/* There will be a magnifying glass icon */} -->
+          <h1 class="absolute right-2 top-1">*</h1>
+        </div>
+        <div class="size-[2rem] rounded-full cursor-pointer">
           <!-- {/* Will probaby use normal profile icon instead */} -->
-          <img class='size-[2rem] rounded-full object-center object-cover' src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.3SEcIdFb4CafVurAVrO27wHaLH%3Fpid%3DApi&f=1&ipt=2e425bd028782f501d24f697e7ec3e4cc5a11f173d97f87a31283ec54b1b374e&ipo=images" alt="Profile Photo" />
+          <img
+            class="size-[2rem] rounded-full object-center object-cover"
+            src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.3SEcIdFb4CafVurAVrO27wHaLH%3Fpid%3DApi&f=1&ipt=2e425bd028782f501d24f697e7ec3e4cc5a11f173d97f87a31283ec54b1b374e&ipo=images"
+            alt="Profile Photo"
+          />
         </div>
       </div>
       <!-- {/* Body */} -->
-      <div class='py-4 px-2'>
-       <div class='flex gap-2 items-center'> 
-         <!-- {/* Here will be a icon of a sun */} -->
-        <h1>O</h1>
-        <h1 class='text-md'>Welcome<br/> <span class='font-semibold text-2xl'>John Doe</span></h1></div>
-      <!-- {/* Cards */} -->
-      <div class='flex justify-center gap-4 items-center flex-wrap py-3 '>
-        <!-- {/* will add some shadows here according to the bg color */} -->
-        <div class='bg-[#53AE3C] w-32 h-16 shadow-[#53AE3C] rounded-md relative p-2 transition cursor-pointer hover:bg-[#588c4b]'>
-          <h1 class='text-sm text-gray-300'>Users</h1>
-          <h1 class='text-2xl font-semibold text-gray-200'>100</h1>
-          <!-- {/* Icon for some style will be here */} -->
-          <h1 class='absolute top-2 right-1'>"</h1>
+      <div class="py-4 px-2">
+        <div class="flex gap-2 items-center">
+          
+          <!-- {/* Here will be a icon of a sun */} -->
+          <h1>O</h1>
+          <h1 class="text-md">
+            Welcome
+            <br /> <span class="font-semibold text-2xl">John Doe</span>
+          </h1>
         </div>
-<div class='bg-[#227CE9] w-32 h-16 rounded-md relative p-2'>
-          <h1 class='text-sm text-gray-300'>Recipes</h1>
-          <h1 class='text-2xl font-semibold text-gray-200 '>80</h1>
-          <!-- {/* Icon for some style will be here */} -->
-          <h1 class='absolute top-2 right-1'>"</h1>
+        <!-- {/* Cards */} -->
+        <div class="flex justify-center gap-4 items-center flex-wrap py-3 mb-2">
+          <!-- {/* will add some shadows here according to the bg color */} -->
+          <div class="bg-[#53AE3C] w-32 h-16 shadow-[#53AE3C] rounded-md relative p-2 transition cursor-pointer hover:bg-[#588c4b]">
+            <h1 class="text-sm text-gray-300">Users</h1>
+            <h1 class="text-2xl font-semibold text-gray-200">100</h1>
+            <!-- {/* Icon for some style will be here */} -->
+            <h1 class="absolute top-2 right-1">"</h1>
+          </div>
+          <div class="bg-[#227CE9] w-32 h-16 rounded-md relative p-2">
+            <h1 class="text-sm text-gray-300">Recipes</h1>
+            <h1 class="text-2xl font-semibold text-gray-200 ">80</h1>
+            <!-- {/* Icon for some style will be here */} -->
+            <h1 class="absolute top-2 right-1">"</h1>
+          </div>
+          <div class="bg-[#E24861] w-32 h-16 rounded-md relative p-2">
+            <h1 class="text-sm text-gray-300">categories</h1>
+            <h1 class="text-2xl font-semibold text-gray-200">10</h1>
+            <!-- {/* Icon for some style will be here */} -->
+            <h1 class="absolute top-2 right-1">"</h1>
+          </div>
+          <div class="bg-[#6E47A4] w-32 h-16 rounded-md relative p-2">
+            <h1 class="text-sm text-gray-300">Comments</h1>
+            <h1 class="text-2xl font-semibold text-gray-200">150</h1>
+            <!-- {/* Icon for some style will be here */} -->
+            <h1 class="absolute top-2 right-1">"</h1>
+          </div>
         </div>
-<div class='bg-[#E24861] w-32 h-16 rounded-md relative p-2'>
-          <h1 class='text-sm text-gray-300'>categories</h1>
-          <h1 class='text-2xl font-semibold text-gray-200'>10</h1>
-          <!-- {/* Icon for some style will be here */} -->
-          <h1 class='absolute top-2 right-1'>"</h1>
-        </div>
-<div class='bg-[#6E47A4] w-32 h-16 rounded-md relative p-2'>
-          <h1 class='text-sm text-gray-300'>Comments</h1>
-          <h1 class='text-2xl font-semibold text-gray-200'>150</h1>
-          <!-- {/* Icon for some style will be here */} -->
-          <h1 class='absolute top-2 right-1'>"</h1>
-        </div>
-                </div>
-      </div>
 
+        <!-- {/* table */} -->
+        <section class=" overflow-x-auto  border-t border-gray-500">
+          <div><h1 class="text-gray-300 mt-2 mb-2">Recipes Data</h1></div>
+            <table class="min-w-full border-collapse rounded-md">
+              <thead>
+                <tr class="text-sm bg-[#38485B]">
+                  <th class="px-4 py-2  border-gray-600 border-1 whitespace-nowrap">
+                    Recipe Title
+                  </th>
+                  <th class="px-4 py-2  border-gray-600 border-1 whitespace-nowrap">Created By</th>
+                  <th class="px-4 py-2  border-gray-600 border-1 whitespace-nowrap">Category</th>
+                  <th class="px-4 py-2  border-gray-600 border-1 whitespace-nowrap">Created On</th>
+                </tr>
+              </thead>
+              <!-- {/* Tabe body */} -->
+               <tbody>
+      <tr class="active:bg-[#35475c39]">
+        <td class="px-4 py-2  border-gray-600 border-1">Fried Rice</td>
+        <td class="px-4 py-2  border-gray-600 border-1 ">Anuj</td>
+        <td class="px-4 py-2  border-gray-600 border-1 ">Asian</td>
+        <td class="px-4 py-2  border-gray-600 border-1 whitespace-nowrap">2025-01-01</td>
+      </tr>
+       <tr class="active:bg-[#35475c39]">
+        <td class="px-4 py-2  border-gray-600 border-1">Fried Rice</td>
+        <td class="px-4 py-2  border-gray-600 border-1 ">Anuj</td>
+        <td class="px-4 py-2  border-gray-600 border-1 ">Asian</td>
+        <td class="px-4 py-2  border-gray-600 border-1 whitespace-nowrap">2025-01-01</td>
+      </tr>
+       <tr class="active:bg-[#35475c39]">
+        <td class="px-4 py-2  border-gray-600 border-1">Fried Rice</td>
+        <td class="px-4 py-2  border-gray-600 border-1 ">Anuj</td>
+        <td class="px-4 py-2  border-gray-600 border-1 ">Asian</td>
+        <td class="px-4 py-2  border-gray-600 border-1 whitespace-nowrap">2025-01-01</td>
+      </tr>
+       <tr class="active:bg-[#35475c39]">
+        <td class="px-4 py-2  border-gray-600 border-1">Fried Rice</td>
+        <td class="px-4 py-2  border-gray-600 border-1 ">Anuj</td>
+        <td class="px-4 py-2  border-gray-600 border-1 ">Asian</td>
+        <td class="px-4 py-2  border-gray-600 border-1 whitespace-nowrap">2025-01-01</td>
+      </tr>
+       <tr class="active:bg-[#35475c39]">
+        <td class="px-4 py-2  border-gray-600 border-1">Fried Rice</td>
+        <td class="px-4 py-2  border-gray-600 border-1 ">Anuj</td>
+        <td class="px-4 py-2  border-gray-600 border-1 ">Asian</td>
+        <td class="px-4 py-2  border-gray-600 border-1 whitespace-nowrap">2025-01-01</td>
+      </tr>
+     
+     
+     
+    </tbody>
+
+
+            </table>
+  
+
+        </section>
+      </div>
     </div>
 </body>
 </html>
