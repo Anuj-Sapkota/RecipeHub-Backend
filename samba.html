@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RecipeHub - Spicy Garlic Butter Chicken Thighs</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #ff7b00;
+      padding: 1rem 3rem;
+      color: white;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .search-bar {
+      width: 300px;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: none;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    nav button {
+      background: white;
+      color: #ff7b00;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    main {
+      padding: 2rem 3rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      color: #777;
+      margin-bottom: 1rem;
+    }
+
+    .description {
+      margin-bottom: 1rem;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .quick-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    .ingredients-steps {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .ingredients, .steps {
+      flex: 1;
+    }
+
+    .ingredients ul, .steps ol, .ingredients h3 {
+      margin-top: 0.5rem;
+    }
+
+    .rating {
+      margin: 2rem 0;
+      background-color: #fff0e5;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stars {
+      font-size: 1.5rem;
+      color: #ff7b00;
+      margin-top: 0.5rem;
+    }
+
+    .comments textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 1rem;
+    }
+
+    .comments button {
+      background-color: #ff7b00;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .comment {
+      background: #f9f9f9;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+    }
+
+    .load-more {
+      background: #ff7b00;
+      color: white;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 5px;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem 3rem;
+    }
+
+    footer button {
+      background: white;
+      color: #ff7b00;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      margin-top: 0.5rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <div class="logo">🍳</div>
+      <input type="text" placeholder="Search recipes" class="search-bar" />
+    </div>
+    <nav>
+      <button>Home</button>
+      <button>Recipes</button>
+      <button>Categories</button>
+      <button>About Us</button>
+      <button>FAQs</button>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Spicy Garlic Butter Chicken Thighs</h1>
+    <div class="meta">
+      <div>👩‍🍳 Jane Doe | 📅 July 11, 2025 | 💬 12 Comments | ⭐ 4.8</div>
+      <button class="favorite">♡ Add to Favourites</button>
+    </div>
+
+    <p class="description">
+      A bold and savory chicken recipe packed with spicy, buttery garlic flavors — easy to make and perfect for dinner!
+    </p>
+
+    <div class="image-container">
+      <img src="https://via.placeholder.com/1200x500.png?text=Chicken+Dish" alt="Spicy Garlic Chicken" />
+    </div>
+
+    <div class="quick-info">
+      <span>⏱ Prep Time: 15 mins</span>
+      <span>🍽 Servings: 4</span>
+    </div>
+
+    <div class="ingredients-steps">
+      <div class="ingredients">
+        <h2>Ingredients</h2>
+        <ul>
+          <li>4 chicken thighs</li>
+          <li>3 cloves garlic, minced</li>
+          <li>2 tbsp butter</li>
+          <li>1 tsp chili flakes</li>
+          <li>Salt & pepper</li>
+        </ul>
+
+        <h3>Nutrients</h3>
+        <ul>
+          <li>Calories: 320</li>
+          <li>Protein: 28g</li>
+          <li>Fat: 20g</li>
+        </ul>
+      </div>
+
+      <div class="steps">
+        <h2>Steps</h2>
+        <ol>
+          <li>Season the chicken with salt, pepper, and chili flakes.</li>
+          <li>Heat butter in a pan and sauté garlic.</li>
+          <li>Add chicken and cook until golden and crispy.</li>
+          <li>Simmer for 10 minutes until cooked through.</li>
+          <li>Serve hot with sides of your choice.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="rating">
+      <h2>Finished Making?</h2>
+      <p>Leave a rating to help others!</p>
+      <div class="stars">★ ★ ★ ★ ☆</div>
+    </div>
+
+    <section class="comments">
+      <h2>Comments</h2>
+      <textarea placeholder="Add your comment..."></textarea>
+      <button>Submit</button>
+
+      <div class="comment">
+        <strong>Anna:</strong>
+        <p>This was so easy and flavorful. My kids loved it!</p>
+      </div>
+
+      <div class="comment">
+        <strong>John:</strong>
+        <p>Really tasty! Added some lemon juice too — great result.</p>
+      </div>
+
+      <button class="load-more">Load More</button>
+    </section>
+  </main>
+
+  <footer>
+    <h3>A Subtitle</h3>
+    <button>Subscribe</button>
+    <p>&copy; 2025 RecipeHub</p>
+  </footer>
+</body>
+</html>
