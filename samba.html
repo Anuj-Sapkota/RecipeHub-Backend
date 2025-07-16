@@ -6,13 +6,13 @@
   <title>RecipeHub - Spicy Garlic Butter Chicken Thighs</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-white text-gray-800 font-sans w-[1080px] h-[720px] overflow-y-auto">
+<body class="bg-white text-gray-800 font-sans">
   <header class="bg-orange-500 text-white p-6">
-    <div class="flex justify-between items-center">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
       <div class="text-2xl">🍳</div>
-      <input type="text" placeholder="Search recipes" class="w-72 px-3 py-2 rounded-md border-none text-black" />
+      <input type="text" placeholder="Search recipes" class="w-full md:w-72 px-3 py-2 rounded-md border-none text-black" />
     </div>
-    <nav class="flex justify-center gap-4 mt-4 flex-wrap">
+    <nav class="flex flex-wrap justify-center gap-4 mt-4">
       <button class="bg-white text-orange-500 font-bold px-4 py-2 rounded-md">Home</button>
       <button class="bg-white text-orange-500 font-bold px-4 py-2 rounded-md">Recipes</button>
       <button class="bg-white text-orange-500 font-bold px-4 py-2 rounded-md">Categories</button>
@@ -21,9 +21,9 @@
     </nav>
   </header>
 
-  <main class="px-12 py-8 max-w-screen-lg mx-auto">
-    <h1 class="text-3xl font-bold mb-2">Spicy Garlic Butter Chicken Thighs</h1>
-    <div class="flex justify-between items-center flex-wrap text-sm text-gray-600 mb-4">
+  <main class="px-6 md:px-12 py-8 max-w-screen-xl mx-auto">
+    <h1 class="text-2xl md:text-3xl font-bold mb-2">Spicy Garlic Butter Chicken Thighs</h1>
+    <div class="flex flex-col md:flex-row justify-between items-start gap-4 text-sm text-gray-600 mb-4">
       <div>👩‍🍳 Jane Doe | 📅 July 11, 2025 | 💬 12 Comments | ⭐ 4.8</div>
       <button class="bg-orange-100 text-orange-500 border border-orange-500 px-3 py-1 rounded">♡ Add to Favourites</button>
     </div>
@@ -36,13 +36,13 @@
       <img src="https://via.placeholder.com/1200x500.png?text=Chicken+Dish" alt="Spicy Garlic Chicken" class="w-full rounded-lg" />
     </div>
 
-    <div class="flex justify-between text-sm text-gray-700 mb-8">
+    <div class="flex flex-col md:flex-row justify-between text-sm text-gray-700 mb-8 gap-2">
       <span>⏱ Prep Time: 15 mins</span>
       <span>🍽 Servings: 4</span>
     </div>
 
-    <div class="flex gap-10 mb-8">
-      <div class="w-1/2">
+    <div class="flex flex-col md:flex-row gap-10 mb-8">
+      <div class="md:w-1/2">
         <h2 class="text-xl font-semibold mb-2">Ingredients</h2>
         <ul class="list-disc ml-6 mb-4">
           <li>4 chicken thighs</li>
@@ -59,7 +59,7 @@
         </ul>
       </div>
 
-      <div class="w-1/2">
+      <div class="md:w-1/2">
         <h2 class="text-xl font-semibold mb-2">Steps</h2>
         <ol class="list-decimal ml-6">
           <li>Season the chicken with salt, pepper, and chili flakes.</li>
