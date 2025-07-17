@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        ccccc
-         <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <title>RecipeHub - Admin Dashboard</title>
-</head>
-<body class="min-h-screen">
-    <div class="bg-[#1C2135] w-full h-screen text-white ">
-      <div class="flex justify-between items-center shadow shadow-gray-600 w-full py-2 px-4 md:px-8">
-        <div class=" flex gap-4">
+  </head>
+  <!-- add the headers and sections remove the class from body -->
+  <body class="min-h-screen"> 
+    <div class="bg-[#1C2135] w-full h-screen text-white">
+      <div
+        class="flex justify-between items-center shadow shadow-gray-600 w-full py-2 px-4 md:px-8"
+      >
+        <div class="flex gap-4">
           <h1 class="text-2xl cursor-pointer">=</h1>
-      
-        <!-- {/* Logo */} -->
-        <div class="">
-          <img class="size-0 md:w-24 md:h-8" src="/assets/RECIPEHUB-white-text.png" alt="logo"/>
+
+          <!-- {/* Logo */} -->
+          <div class="">
+            <img
+              class="size-0 md:w-24 md:h-8"
+              src="/assets/RECIPEHUB-white-text.png"
+              alt="logo"
+            />
+          </div>
         </div>
-        </div>
-        <div class="relative flex  items-center md:w-[20rem] lg:w-[40rem]">
+        <div class="relative flex items-center md:w-[20rem] lg:w-[40rem]">
           <input
             class="bg-[#38485B] rounded-md text-sm px-2 py-2 outline-none md:w-full lg:w-full"
             type="search"
@@ -45,95 +53,149 @@
           <!-- {" "} -->
           <!-- {/* Here will be a icon of a sun */} -->
           <h1>O</h1>
-          <h1 class="text-md md:flex md:justify-center md:items-center md:text-lg md:gap-2">
+          <h1
+            class="text-md md:flex md:justify-center md:items-center md:text-lg md:gap-2"
+          >
             Welcome
-            <br /> <span class="font-semibold text-2xl md:text-2xl">John Doe</span>
+            <br />
+            <span class="font-semibold text-2xl md:text-2xl">John Doe</span>
           </h1>
         </div>
         <!-- {/* Cards */} -->
-        <div class="flex justify-center gap-4 lg:gap-16 items-center flex-wrap py-3 md:mb-4 ">
+        <div
+          class="flex justify-center gap-4 lg:gap-16 items-center flex-wrap py-3 md:mb-4"
+        >
           <!-- {/* will add some shadows here according to the bg color */} -->
-          <div class="bg-[#53AE3C] w-32 h-16 md:w-48 md:h-24 shadow-[#53AE3C] rounded-md relative p-2 md:p-4 transition cursor-pointer hover:bg-[#588c4b]">
+          <div
+            class="bg-[#53AE3C] w-32 h-16 md:w-48 md:h-24 shadow-[#53AE3C] rounded-md relative p-2 md:p-4 transition cursor-pointer hover:bg-[#588c4b]"
+          >
             <h1 class="text-sm md:text-xl text-gray-300">Users</h1>
-            <h1 class="text-2xl md:text-3xl font-semibold text-gray-200">100</h1>
+            <h1 class="text-2xl md:text-3xl font-semibold text-gray-200">
+              100
+            </h1>
             <!-- {/* Icon for some style will be here */} -->
             <h1 class="absolute top-2 right-1">"</h1>
           </div>
-          <div class="bg-[#227CE9] w-32 h-16 md:w-48 md:h-24 rounded-md relative p-2">
+          <div
+            class="bg-[#227CE9] w-32 h-16 md:w-48 md:h-24 rounded-md relative p-2"
+          >
             <h1 class="text-sm md:text-xl text-gray-300">Recipes</h1>
-            <h1 class="text-2xl md:text-3xl font-semibold text-gray-200 ">80</h1>
+            <h1 class="text-2xl md:text-3xl font-semibold text-gray-200">80</h1>
             <!-- {/* Icon for some style will be here */} -->
             <h1 class="absolute top-2 right-1">"</h1>
           </div>
-          <div class="bg-[#E24861] w-32 h-16 md:w-48 md:h-24 rounded-md relative p-2">
+          <div
+            class="bg-[#E24861] w-32 h-16 md:w-48 md:h-24 rounded-md relative p-2"
+          >
             <h1 class="text-sm md:text-xl text-gray-300">categories</h1>
             <h1 class="text-2xl md:text-3xl font-semibold text-gray-200">10</h1>
             <!-- {/* Icon for some style will be here */} -->
             <h1 class="absolute top-2 right-1">"</h1>
           </div>
-          <div class="bg-[#6E47A4] w-32 h-16 md:w-48 md:h-24 rounded-md relative p-2">
+          <div
+            class="bg-[#6E47A4] w-32 h-16 md:w-48 md:h-24 rounded-md relative p-2"
+          >
             <h1 class="text-sm md:text-xl text-gray-300">Comments</h1>
-            <h1 class="text-2xl md:text-3xl font-semibold text-gray-200">150</h1>
+            <h1 class="text-2xl md:text-3xl font-semibold text-gray-200">
+              150
+            </h1>
             <!-- {/* Icon for some style will be here */} -->
             <h1 class="absolute top-2 right-1">"</h1>
           </div>
         </div>
 
         <!-- {/* table */} -->
-        <div class=" overflow-x-auto md:overflow-hidden md:w-full border-t border-gray-500">
-          <div><h1 class="text-gray-300 text-lg md:text-xl mt-2 md:mt-4 mb-2 md:mb-4 font-semibold">Recipes Data</h1></div>
-            <table class="min-w-full border-collapse rounded-md">
-              <thead>
-                <tr class="text-sm bg-[#38485B]">
-                  <th class="px-4 py-2  border-gray-600 border-1 whitespace-nowrap">
-                    Recipe Title
-                  </th>
-                  <th class="px-4 py-2  border-gray-600 border-1 whitespace-nowrap">Created By</th>
-                  <th class="px-4 py-2  border-gray-600 border-1 whitespace-nowrap">Category</th>
-                  <th class="px-4 py-2  border-gray-600 border-1 whitespace-nowrap">Created On</th>
-                </tr>
-              </thead>
-              <!-- {/* Tabe body */} -->
-               <tbody>
-      <tr class="active:bg-[#35475c39] cursor-pointer md:hover:bg-[#35475c39] lg:hover:bg-[#35475c39]">
-        <td class="px-4 py-2  border-gray-600 border">Fried Rice</td>
-        <td class="px-4 py-2  border-gray-600 border ">Anuj</td>
-        <td class="px-4 py-2  border-gray-600 border ">Asian</td>
-        <td class="px-4 py-2  border-gray-600 border whitespace-nowrap">2025-01-01</td>
-      </tr>
-       <tr class="active:bg-[#35475c39] cursor-pointer md:hover:bg-[#35475c39] lg:hover:bg-[#35475c39]">
-        <td class="px-4 py-2  border-gray-600 border">Fried Rice</td>
-        <td class="px-4 py-2  border-gray-600 border ">Anuj</td>
-in        <td class="px-4 py-2  border-gray-600 border whitespace-nowrap">2025-01-01</td>
-      </tr>
-       <tr class="active:bg-[#35475c39] cursor-pointer md:hover:bg-[#35475c39] lg:hover:bg-[#35475c39]">
-        <td class="px-4 py-2  border-gray-600 border">Fried Rice</td>
-        <td class="px-4 py-2  border-gray-600 border ">Anuj</td>
-        <td class="px-4 py-2  border-gray-600 border ">Asian</td>
-        <td class="px-4 py-2  border-gray-600 border whitespace-nowrap">2025-01-01</td>
-      </tr>
-       <tr class="active:bg-[#35475c39] cursor-pointer md:hover:bg-[#35475c39] lg:hover:bg-[#35475c39]">
-        <td class="px-4 py-2  border-gray-600 border">Fried Rice</td>
-        <td class="px-4 py-2  border-gray-600 border ">Anuj</td>
-        <td class="px-4 py-2  border-gray-600 border ">Asian</td>
-        <td class="px-4 py-2  border-gray-600 border whitespace-nowrap">2025-01-01</td>
-      </tr>
-       <tr class="active:bg-[#35475c39] cursor-pointer md:hover:bg-[#35475c39] lg:hover:bg-[#35475c39]">
-        <td class="px-4 py-2  border-gray-600 border">Fried Rice</td>
-        <td class="px-4 py-2  border-gray-600 border ">Anuj</td>
-        <td class="px-4 py-2  border-gray-600 border ">Asian</td>
-        <td class="px-4 py-2  border-gray-600 border whitespace-nowrap">2025-01-01</td>
-      </tr>
-     
-     
-     
-    </tbody>
-
-
-
-            </table>
-            </div>
-     </div>
+        <div
+          class="overflow-x-auto md:overflow-hidden md:w-full border-t border-gray-500"
+        >
+          <div>
+            <h1
+              class="text-gray-300 text-lg md:text-xl mt-2 md:mt-4 mb-2 md:mb-4 font-semibold"
+            >
+              Recipes Data
+            </h1>
+          </div>
+          <table class="min-w-full border-collapse rounded-md">
+            <thead>
+              <tr class="text-sm bg-[#38485B]">
+                <th
+                  class="px-4 py-2 border-gray-600 border-1 whitespace-nowrap"
+                >
+                  Recipe Title
+                </th>
+                <th
+                  class="px-4 py-2 border-gray-600 border-1 whitespace-nowrap"
+                >
+                  Created By
+                </th>
+                <th
+                  class="px-4 py-2 border-gray-600 border-1 whitespace-nowrap"
+                >
+                  Category
+                </th>
+                <th
+                  class="px-4 py-2 border-gray-600 border-1 whitespace-nowrap"
+                >
+                  Created On
+                </th>
+              </tr>
+            </thead>
+            <!-- {/* Tabe body */} -->
+            <tbody>
+              <tr
+                class="active:bg-[#35475c39] cursor-pointer md:hover:bg-[#35475c39] lg:hover:bg-[#35475c39]"
+              >
+                <td class="px-4 py-2 border-gray-600 border">Fried Rice</td>
+                <td class="px-4 py-2 border-gray-600 border">Anuj</td>
+                <td class="px-4 py-2 border-gray-600 border">Asian</td>
+                <td class="px-4 py-2 border-gray-600 border whitespace-nowrap">
+                  2025-01-01
+                </td>
+              </tr>
+              <tr
+                class="active:bg-[#35475c39] cursor-pointer md:hover:bg-[#35475c39] lg:hover:bg-[#35475c39]"
+              >
+                <td class="px-4 py-2 border-gray-600 border">Fried Rice</td>
+                <td class="px-4 py-2 border-gray-600 border">Anuj</td>
+                in
+                <td class="px-4 py-2 border-gray-600 border whitespace-nowrap">
+                  2025-01-01
+                </td>
+              </tr>
+              <tr
+                class="active:bg-[#35475c39] cursor-pointer md:hover:bg-[#35475c39] lg:hover:bg-[#35475c39]"
+              >
+                <td class="px-4 py-2 border-gray-600 border">Fried Rice</td>
+                <td class="px-4 py-2 border-gray-600 border">Anuj</td>
+                <td class="px-4 py-2 border-gray-600 border">Asian</td>
+                <td class="px-4 py-2 border-gray-600 border whitespace-nowrap">
+                  2025-01-01
+                </td>
+              </tr>
+              <tr
+                class="active:bg-[#35475c39] cursor-pointer md:hover:bg-[#35475c39] lg:hover:bg-[#35475c39]"
+              >
+                <td class="px-4 py-2 border-gray-600 border">Fried Rice</td>
+                <td class="px-4 py-2 border-gray-600 border">Anuj</td>
+                <td class="px-4 py-2 border-gray-600 border">Asian</td>
+                <td class="px-4 py-2 border-gray-600 border whitespace-nowrap">
+                  2025-01-01
+                </td>
+              </tr>
+              <tr
+                class="active:bg-[#35475c39] cursor-pointer md:hover:bg-[#35475c39] lg:hover:bg-[#35475c39]"
+              >
+                <td class="px-4 py-2 border-gray-600 border">Fried Rice</td>
+                <td class="px-4 py-2 border-gray-600 border">Anuj</td>
+                <td class="px-4 py-2 border-gray-600 border">Asian</td>
+                <td class="px-4 py-2 border-gray-600 border whitespace-nowrap">
+                  2025-01-01
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
