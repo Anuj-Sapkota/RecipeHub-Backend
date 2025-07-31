@@ -1,10 +1,10 @@
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
 const config = {
-    mongoDBUrl: process.env.MONGODB_URL || "",
-    port:  process.env.PORT || "5000"
+  mongoDBUrl: process.env.MONGODB_URL || "",
+  port: process.env.PORT || "5000",
 };
 
-export default config
+export default config;
