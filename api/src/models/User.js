@@ -11,7 +11,6 @@ const userSchema = new mongoose.Schema({
   },
   profileImage: String,
   bio: String,
-
   createdAt: { type: Date, default: Date.now },
 });
 
