@@ -1,6 +1,7 @@
 import express from "express";
 import connectDB from "./config/database.js";
 import config from "./config/config.js";
+import logger from "./middlewares/logger.js";
 import bodyParser from "body-parser";
 const app = express();
 
