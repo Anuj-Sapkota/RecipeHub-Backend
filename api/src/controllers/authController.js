@@ -11,14 +11,13 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-   try {
-     const input = req.body;
+  try {
+    const input = req.body;
     const loggedUser = await authService.login(input);
     res.status(200).json(loggedUser);
-   } catch (error) {
+  } catch (error) {
     res.status(500).send(error.message);
-   }
-}
+  }
+};
 
-
-export default {registerUser, loginUser}
+export default { registerUser, loginUser };
