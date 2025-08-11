@@ -1,9 +1,18 @@
 import mongoose from "mongoose";
 
 const categorySchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true, trim: true },
+  name: {
+    type: String,
+    required: [true, "Category name is required!"],
+    unique: [true, "Name must be unique"],
+    trim: true,
+  },
   imageUrl: { type: String },
-  createdAt: { type: Date, default: Date.now },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    immutable: true,
+  },
 });
 
 const categoryModel = mongoose.model("Category", categorySchema);
