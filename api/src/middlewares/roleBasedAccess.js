@@ -7,4 +7,5 @@ const roleBasedAccess = (role) => {
     res.status(403).send("Access Denied!");
   };
 };
+
 export default roleBasedAccess;
