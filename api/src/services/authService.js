@@ -26,7 +26,7 @@ const login = async (data) => {
       statusCode: 400,
       message: "Please fill both email and password.",
     };
-    
+
   const isPasswordMatch = bcrypt.compareSync(data.password, userData.password); // Comparing hashed Password
 
   if (!userData || !isPasswordMatch) {
@@ -34,7 +34,7 @@ const login = async (data) => {
       statusCode: 401,
       message: "Incorrect email or password!",
     };
-  }
+  };
 
   const userObj = userData.toObject();
   delete userObj.password;
