@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 
 import config from "../config/config.js";
+
 const createJwt = (data) => {
   const token = jwt.sign(data, config.jwtSecret, {
     expiresIn: "2d",

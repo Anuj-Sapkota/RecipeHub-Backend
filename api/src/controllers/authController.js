@@ -12,6 +12,7 @@ const registerUser = async (req, res) => {
 
     const registeredUser = await authService.register(input);
     const authToken = jwt.createJwt(registeredUser);
+
     res.cookie("authToken", authToken, { maxAge: 86400 * 1000 * 7 }); // cookie generation
     res.status(201).json(registeredUser);
   } catch (error) {
@@ -24,6 +25,7 @@ const loginUser = async (req, res) => {
     const input = req.body;
     const loggedUser = await authService.login(input);
     const authToken = jwt.createJwt(loggedUser);
+    
     res.cookie("authToken", authToken, { maxAge: 86400 * 1000 * 7 }); // cookie generation
     res.status(200).json(loggedUser);
   } catch (error) {
