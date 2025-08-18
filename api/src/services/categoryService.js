@@ -6,6 +6,4 @@ const createCategory = async (id, data) => {
   return createdCategory;
 };
 
-export default {
-  createCategory,
-};
+export default { createCategory };
