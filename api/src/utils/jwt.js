@@ -6,7 +6,7 @@ const createJwt = (data) => {
   const token = jwt.sign(data, config.jwtSecret, {
     expiresIn: "2d",
   });
-  console.log("CreatedToken", token);
+  
   return token;
 };
 

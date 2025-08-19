@@ -5,6 +5,7 @@ const create = async (data, createdBy) => {
     ...data,
     createdBy,
   });
+  
   return createdRecipe;
 };
 
