@@ -4,7 +4,13 @@ const recipeSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String },
   ingredients: [String],
-  instructions: { type: String },
+  instructions: {
+    type: [String],
+    required: true,
+  },
+  preparationTime: { type: Number, required: true }, // in minutes
+  servings: { type: Number, required: true },
+  nutrients: [String],
   image: { type: String },
   category: {
     type: mongoose.Schema.Types.ObjectId,
@@ -38,6 +44,7 @@ const recipeSchema = new mongoose.Schema({
     immutable: true,
   },
 });
+recipeSchema.index({ title: 1, createdBy: 1 }, { unique: true }); // Ensuring unique recipes per user
 
 const recipeModel = mongoose.model("Recipe", recipeSchema);
 
