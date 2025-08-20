@@ -1,30 +1,30 @@
-// src/app.js
-
 import express from "express";
 import connectDB from "./config/database.js";
 import config from "./config/config.js";
-
-// ✅ Import only the functions you need
-import {
-  addFavorite,
-  removeFavorite,
-  getAllFavorites,
-  isFavorited,
-} from "./controllers/favoriteController.js";
-
+import logger from "./middlewares/logger.js";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
+import authRoute from "./routers/authRoute.js";
+import recipeRoute from "./routers/recipeRoute.js";
+import categoryRoute from './routers/categoryRoute.js'
+import auth from "./middlewares/auth.js";
 const app = express();
-app.use(express.json());
 
-// ✅ Connect to MongoDB
 connectDB();
 
-// ✅ Favorite routes
-app.post("/api/favorites/:recipeId", addFavorite);
-app.delete("/api/favorites/:recipeId", removeFavorite);
-app.get("/api/favorites", getAllFavorites);
-app.get("/api/favorites/:recipeId", isFavorited); // Optional: check if favorited
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(logger);
 
-// ✅ Start server
+// Auth
+app.use("/api/auth", authRoute);
+
+// Recipe
+app.use("/api/recipe", auth, recipeRoute);
+
+//Category
+app.use("/api/category", auth, categoryRoute);
+
 app.listen(config.port, () => {
   console.log(`Server running at port: ${config.port}....`);
 });
