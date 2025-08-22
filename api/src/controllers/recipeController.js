@@ -4,6 +4,7 @@ const createRecipe = async (req, res) => {
 
   try {
     const data = await recipeService.create(req.body, req.file, req.user);
+
     res.status(201).json(data);
   } catch (error) {
 
