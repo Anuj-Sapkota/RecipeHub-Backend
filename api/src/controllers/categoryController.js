@@ -4,7 +4,11 @@ const createCategory = async (req, res) => {
   const input = req.body;
 
   try {
-    const data = await categoryService.createCategory(req.params.id, input);
+    const data = await categoryService.createCategory(
+      req.params.id,
+      req.file,
+      input
+    );
 
     res.status(201).json(data);
   } catch (error) {

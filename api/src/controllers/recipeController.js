@@ -1,9 +1,10 @@
 import recipeService from "../services/recipeService.js";
 
 const createRecipe = async (req, res) => {
+  const input = req.body;
 
   try {
-    const data = await recipeService.create(req.body, req.file, req.user);
+    const data = await recipeService.create(input, req.file, req.user);
 
     res.status(201).json(data);
   } catch (error) {
@@ -14,8 +15,8 @@ const createRecipe = async (req, res) => {
     } else {
       res.status(500).send(error.message);
     }
+    
   }
-  
 };
 
 export default { createRecipe };

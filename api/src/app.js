@@ -30,7 +30,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/recipe", auth, upload.single("image"),  recipeRoute);
 
 //Category
-app.use("/api/category", auth, categoryRoute);
+app.use("/api/category", auth, upload.single("image"), categoryRoute);
 
 app.listen(config.port, () => {
   console.log(`Server running at port: ${config.port}....`);
