@@ -10,9 +10,11 @@ const createRecipe = async (req, res) => {
 
     res.status(201).json(data);
   } catch (error) {
+
     // Handling duplicate recipe title for the same user
     if (error.code === 11000) {
       return res.status(400).send("You already have a recipe with that title!");
+      
     } else {
       res.status(500).send(error.message);
     }
@@ -25,9 +27,10 @@ const updateRecipe = async (req, res) => {
   const recipeId = req.params.id;
   const file = req.file;
   const user = req.user;
+
   try {
     const data = await recipeService.update(input, file, user, recipeId);
-    
+
     res.status(200).json(data);
   } catch (error) {
     res.status(500).send(error.message);
