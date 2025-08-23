@@ -3,6 +3,7 @@ import RecipeModel from "../models/Recipe.js";
 import uploadImages from "../utils/file.js";
 import { promptMessage } from "../constants/promptMessage.js";
 import geminiReply from "../utils/gemini.js";
+import recipeModel from "../models/Recipe.js";
 
 const create = async (data, file, createdBy) => {
   let uploadedImage = "";
@@ -70,4 +71,32 @@ const create = async (data, file, createdBy) => {
   return createdRecipe;
 };
 
-export default { create };
+// Update Recipes
+const update = async (data, file, recipeId) => {
+  let uploadedImage = "";
+  if (file) {
+    //taking the name from the title
+    const rawFileName = data.title;
+    // random string for uniqueness in filename
+    const randomStr = Math.random().toString(36).substring(2, 7); // 5 chars
+    const filename = (
+      rawFileName.replace(/\s+/g, "-") +
+      "-" +
+      randomStr
+    ).toLowerCase();
+    uploadedImage = await uploadImages(file, filename);
+  }
+  const recipeExists = await RecipeModel.findById(recipeId);
+  const updatedRecipe = await RecipeModel.findByIdAndUpdate(
+    recipeId,
+    {
+      ...data,
+      image: uploadedImage ? uploadedImage.secure_url : recipeExists.image,
+    },
+    { new: true }
+  );
+
+  return updatedRecipe;
+};
+
+export default { create, update };

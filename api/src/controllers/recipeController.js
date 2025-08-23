@@ -19,4 +19,17 @@ const createRecipe = async (req, res) => {
   }
 };
 
-export default { createRecipe };
+//update recipe controller
+const updateRecipe = async (req, res) => {
+  const input = req.body;
+  const recipeId = req.params.id;
+  const file = req.file;
+  try {
+    const data = await recipeService.update(input, file, recipeId);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
+
+export default { createRecipe, updateRecipe };
