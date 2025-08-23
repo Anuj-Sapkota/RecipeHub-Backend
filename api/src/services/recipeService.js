@@ -56,4 +56,51 @@ const create = async (data, file, createdBy) => {
   return createdRecipe;
 };
 
-export default { create };
+const rateRecipe = async (recipeId, rating, userId) => {
+  // Find the recipe
+  const recipe = await RecipeModel.findById(recipeId);
+  if (!recipe) {
+    throw new Error("Recipe not found");
+  }
+
+  // Ensure ratings array exists
+  if (!recipe.ratings) {
+    recipe.ratings = [];
+  }
+
+  // Check if user has already rated
+  const existingRatingIndex = recipe.ratings.findIndex(r => r.user.toString() === userId.toString());
+  if (existingRatingIndex !== -1) {
+    // Update existing rating
+    recipe.ratings[existingRatingIndex].value = rating;
+  } else {
+    // Add new rating
+    recipe.ratings.push({ user: userId, value: rating });
+  }
+
+  // Calculate average rating
+  const avgRating =
+    recipe.ratings.reduce((sum, r) => sum + r.value, 0) / recipe.ratings.length;
+  recipe.averageRating = avgRating;
+
+  await recipe.save();
+  return recipe;
+};
+
+const getById = async (id) => {
+  return await RecipeModel.findById(id);
+};
+
+const getAll = async () => {
+  return await RecipeModel.find();
+};
+
+const getByName = async (name) => {
+  return await RecipeModel.findOne({ title: name });
+};
+
+const getByUser = async (userId) => {
+  return await RecipeModel.find({ createdBy: userId });
+};
+
+export default { create, rateRecipe, getById, getAll, getByName, getByUser };
