@@ -70,4 +70,21 @@ const create = async (data, file, createdBy) => {
   return createdRecipe;
 };
 
-export default { create };
+const getAll = async () => {
+  return await RecipeModel.find();
+};
+
+const getById = async (id) => {
+  return await RecipeModel.findById(id);
+};
+
+const getByUser = async (userId) => {
+  return await RecipeModel.find({ createdBy: userId });
+};
+
+const getByRecipeTitle = async (title) => {
+  // Case-insensitive search for title
+  return await RecipeModel.find({ title: { $regex: new RegExp(`^${title}$`, "i") } });
+};
+
+export default { create, getAll, getById, getByUser, getByRecipeTitle };
