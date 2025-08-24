@@ -119,5 +119,60 @@ const update = async (data, file, user, recipeId) => {
 
   return updatedRecipe;
 };
+//rate recipes
+const rateRecipe = async (recipeId, rating, userId) => {
+  // Fetch recipe first
+  const recipe = await RecipeModel.findById(recipeId);
+  if (!recipe) {
+    throw new Error("Recipe not found");
+  }
 
-export default { create, update };
+  let ratings = recipe.ratings || [];
+
+  // Check if user already rated
+  const existingRatingIndex = ratings.findIndex(
+    (r) => r.user.toString() === userId.toString()
+  );
+
+  if (existingRatingIndex !== -1) {
+    // Update existing rating
+    ratings[existingRatingIndex].score = rating;
+  } else {
+    // Add new rating
+    ratings.push({ user: userId, score: rating });
+  }
+
+  // Calculate average rating (rounded to 1 decimal place)
+  let avgRating =
+    ratings.reduce((sum, r) => sum + r.score, 0) / ratings.length;
+  avgRating = Math.round(avgRating * 10) / 10; // e.g. 4.36 → 4.4
+
+  // Update in DB
+  const updatedRecipe = await RecipeModel.findByIdAndUpdate(
+    recipeId,
+    {
+      $set: {
+        ratings: ratings,
+        averageRating: avgRating,
+      },
+    },
+    { new: true } // return updated document
+  );
+
+  return updatedRecipe;
+};
+
+
+//get recipes by id
+const getById = async (id) => {
+  const recipes = await RecipeModel.findById(id);
+
+  if (!recipes) {
+    throw new Error("Recipe not found");
+  }
+
+  return recipes;
+};
+
+
+export default { create, update, getById, rateRecipe };
