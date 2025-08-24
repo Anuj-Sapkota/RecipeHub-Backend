@@ -123,6 +123,7 @@ const update = async (data, file, user, recipeId) => {
 const rateRecipe = async (recipeId, rating, userId) => {
   // Fetch recipe first
   const recipe = await RecipeModel.findById(recipeId);
+  
   if (!recipe) {
     throw new Error("Recipe not found");
   }
@@ -144,7 +145,7 @@ const rateRecipe = async (recipeId, rating, userId) => {
 
   // Calculate average rating (rounded to 1 decimal place)
   let avgRating =
-    ratings.reduce((sum, r) => sum + r.score, 0) / ratings.length;
+  ratings.reduce((sum, r) => sum + r.score, 0) / ratings.length;
   avgRating = Math.round(avgRating * 10) / 10; // e.g. 4.36 → 4.4
 
   // Update in DB
