@@ -66,5 +66,31 @@ const rateRecipe = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+const getAllRecipes = async (req, res) => {
+  try {
+    const recipes = await recipeService.getAll();
+    res.status(200).json(recipes);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
 
-export default { createRecipe, updateRecipe, getRecipeById, rateRecipe };
+const getByName = async (req, res) => {
+  try {
+    const { title } = req.params;
+    const recipes = await recipeService.getByName(title);
+    res.status(200).json(recipes);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+const getByUser = async (req, res) => {
+  try {
+    const recipes = await recipeService.getByUser(req.params);
+    res.status(200).json(recipes);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
+export default { createRecipe, updateRecipe, getRecipeById, rateRecipe, getByUser, getByName, getAllRecipes };

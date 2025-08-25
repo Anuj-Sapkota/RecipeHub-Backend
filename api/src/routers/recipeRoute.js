@@ -9,6 +9,14 @@ router.post("/", recipeController.createRecipe);
 // Rate a recipe (protected)
 router.post("/:id/rate", auth, recipeController.rateRecipe);
 
+// Get all recipes
+router.get("/", recipeController.getAllRecipes);
+
+// Get recipes by user (protected)
+router.get("/user/:name", auth, recipeController.getRecipesByUser);
+
+// Get recipe by name
+router.get("/name/:name", recipeController.getRecipeByName);
 // Get recipe by id
 router.get("/:id", recipeController.getRecipeById);
 

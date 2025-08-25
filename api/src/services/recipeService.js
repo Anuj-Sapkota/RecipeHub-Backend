@@ -81,7 +81,7 @@ const update = async (data, file, user, recipeId) => {
   if (!recipe) {
     throw new Error("Recipe not found");
   }
-  
+
   //ownership checking
   if (!recipe.createdBy.equals(user._id)) {
     throw new Error("You are not authorized to update this recipe");
@@ -123,7 +123,7 @@ const update = async (data, file, user, recipeId) => {
 const rateRecipe = async (recipeId, rating, userId) => {
   // Fetch recipe first
   const recipe = await RecipeModel.findById(recipeId);
-  
+
   if (!recipe) {
     throw new Error("Recipe not found");
   }
@@ -144,8 +144,7 @@ const rateRecipe = async (recipeId, rating, userId) => {
   }
 
   // Calculate average rating (rounded to 1 decimal place)
-  let avgRating =
-  ratings.reduce((sum, r) => sum + r.score, 0) / ratings.length;
+  let avgRating = ratings.reduce((sum, r) => sum + r.score, 0) / ratings.length;
   avgRating = Math.round(avgRating * 10) / 10; // e.g. 4.36 → 4.4
 
   // Update in DB
@@ -163,7 +162,6 @@ const rateRecipe = async (recipeId, rating, userId) => {
   return updatedRecipe;
 };
 
-
 //get recipes by id
 const getById = async (id) => {
   const recipes = await RecipeModel.findById(id);
@@ -175,5 +173,49 @@ const getById = async (id) => {
   return recipes;
 };
 
+const getAll = async () => {
+const recipes = await RecipeModel.find()
+    .populate("createdBy", "fullName image") 
+  if (recipes.length === 0) {
+    throw new Error("No recipes found");
+  }
+  return recipes;
+};
 
-export default { create, update, getById, rateRecipe };
+// get recupes by name
+
+const getByName = async (name) => {
+  const recipes = await RecipeModel.find({
+    title: { $regex: name, $options: "i" },
+  }).populate("createdBy", "fullName image");
+  if (recipes.length === 0) {
+    throw new Error("No recipes found");
+  }
+  return recipes;
+};
+
+//get recipes by user
+const getByUser = async (name) => {
+  const user = await UserModel.findOne({
+    fullName: { $regex: name, $options: "i" },
+  }).populate("createdBy", "fullName image") 
+;
+  if (!user) {
+    throw new Error("User not found");
+  }
+  const recipes = await RecipeModel.find({ createdBy: user._id });
+  if (recipes.length === 0) {
+    throw new Error("No recipes found for this user");
+  }
+  return recipes;
+};
+
+export default {
+  create,
+  update,
+  getById,
+  rateRecipe,
+  getAll,
+  getByName,
+  getByUser,
+};
