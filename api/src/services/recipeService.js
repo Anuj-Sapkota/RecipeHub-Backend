@@ -3,6 +3,7 @@ import RecipeModel from "../models/Recipe.js";
 import uploadImages from "../utils/file.js";
 import { promptMessage } from "../constants/promptMessage.js";
 import geminiReply from "../utils/gemini.js";
+import cloudinary from "cloudinary";
 
 const create = async (data, file, createdBy) => {
   let uploadedImage = "";
@@ -57,7 +58,9 @@ const create = async (data, file, createdBy) => {
   const createdRecipe = await RecipeModel.create({
     ...data,
     createdBy: createdBy._id,
-    image: uploadedImage?.secure_url ?? "",
+    image: uploadedImage
+      ? { url: uploadedImage.secure_url, public_id: uploadedImage.public_id }
+      : { url: "", public_id: "" },
     nutrients:
       data.nutrients ??
       nutrientsResponse
@@ -70,4 +73,107 @@ const create = async (data, file, createdBy) => {
   return createdRecipe;
 };
 
-export default { create };
+// Update Recipes
+const update = async (data, file, user, recipeId) => {
+  //check if the recipe exists
+  const recipe = await RecipeModel.findById(recipeId);
+
+  if (!recipe) {
+    throw new Error("Recipe not found");
+  }
+  
+  //ownership checking
+  if (!recipe.createdBy.equals(user._id)) {
+    throw new Error("You are not authorized to update this recipe");
+  }
+
+  let uploadedImage = "";
+
+  if (file) {
+    //delete the old image from cloudinary
+    if (recipe.image?.public_id) {
+      await cloudinary.uploader.destroy(recipe.image.public_id);
+    }
+
+    //taking the name from the title
+    const rawFileName = data.title ?? recipe.title;
+    // random string for uniqueness in filename
+    const randomStr = Math.random().toString(36).substring(2, 7); // 5 chars
+    const filename = (
+      rawFileName.replace(/\s+/g, "-") +
+      "-" +
+      randomStr
+    ).toLowerCase();
+    uploadedImage = await uploadImages(file, filename);
+  }
+
+  const recipeExists = await RecipeModel.findById(recipeId);
+  const updatedRecipe = await RecipeModel.findByIdAndUpdate(
+    recipeId,
+    {
+      ...data,
+      image: uploadedImage ? uploadedImage.secure_url : recipeExists.image,
+    },
+    { new: true }
+  );
+
+  return updatedRecipe;
+};
+//rate recipes
+const rateRecipe = async (recipeId, rating, userId) => {
+  // Fetch recipe first
+  const recipe = await RecipeModel.findById(recipeId);
+  
+  if (!recipe) {
+    throw new Error("Recipe not found");
+  }
+
+  let ratings = recipe.ratings || [];
+
+  // Check if user already rated
+  const existingRatingIndex = ratings.findIndex(
+    (r) => r.user.toString() === userId.toString()
+  );
+
+  if (existingRatingIndex !== -1) {
+    // Update existing rating
+    ratings[existingRatingIndex].score = rating;
+  } else {
+    // Add new rating
+    ratings.push({ user: userId, score: rating });
+  }
+
+  // Calculate average rating (rounded to 1 decimal place)
+  let avgRating =
+  ratings.reduce((sum, r) => sum + r.score, 0) / ratings.length;
+  avgRating = Math.round(avgRating * 10) / 10; // e.g. 4.36 → 4.4
+
+  // Update in DB
+  const updatedRecipe = await RecipeModel.findByIdAndUpdate(
+    recipeId,
+    {
+      $set: {
+        ratings: ratings,
+        averageRating: avgRating,
+      },
+    },
+    { new: true } // return updated document
+  );
+
+  return updatedRecipe;
+};
+
+
+//get recipes by id
+const getById = async (id) => {
+  const recipes = await RecipeModel.findById(id);
+
+  if (!recipes) {
+    throw new Error("Recipe not found");
+  }
+
+  return recipes;
+};
+
+
+export default { create, update, getById, rateRecipe };

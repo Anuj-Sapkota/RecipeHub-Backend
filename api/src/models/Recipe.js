@@ -11,7 +11,10 @@ const recipeSchema = new mongoose.Schema({
   preparationTime: { type: Number, required: true }, // in minutes
   servings: { type: Number, required: true },
   nutrients: [String],
-  image: { type: String },
+  image: {
+    url: { type: String, default: "" },
+    public_id: { type: String, default: "" },
+  },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Category",
