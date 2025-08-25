@@ -175,7 +175,7 @@ const getById = async (id) => {
 
 const getAll = async () => {
 const recipes = await RecipeModel.find()
-    .populate("createdBy", "fullName image") 
+    .populate("createdBy", "fullName profileImage") 
   if (recipes.length === 0) {
     throw new Error("No recipes found");
   }
@@ -187,7 +187,7 @@ const recipes = await RecipeModel.find()
 const getByName = async (name) => {
   const recipes = await RecipeModel.find({
     title: { $regex: name, $options: "i" },
-  }).populate("createdBy", "fullName image");
+  }).populate("createdBy", "fullName profileImage");
   if (recipes.length === 0) {
     throw new Error("No recipes found");
   }
@@ -198,7 +198,7 @@ const getByName = async (name) => {
 const getByUser = async (name) => {
   const user = await UserModel.findOne({
     fullName: { $regex: name, $options: "i" },
-  }).populate("createdBy", "fullName image") 
+  }).populate("createdBy", "fullName profileImage") 
 ;
   if (!user) {
     throw new Error("User not found");

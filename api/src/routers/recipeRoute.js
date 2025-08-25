@@ -13,10 +13,10 @@ router.post("/:id/rate", auth, recipeController.rateRecipe);
 router.get("/", recipeController.getAllRecipes);
 
 // Get recipes by user (protected)
-router.get("/user/:name", auth, recipeController.getRecipesByUser);
+router.get("/user/:name", auth, recipeController.getByUser);
 
 // Get recipe by name
-router.get("/name/:name", recipeController.getRecipeByName);
+router.get("/name/:name", recipeController.getByName);
 // Get recipe by id
 router.get("/:id", recipeController.getRecipeById);
 
