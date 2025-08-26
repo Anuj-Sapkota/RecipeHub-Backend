@@ -1,5 +1,6 @@
 import categoryModel from "../models/Category.js";
 import RecipeModel from "../models/Recipe.js";
+import UserModel from "../models/User.js";
 import uploadImages from "../utils/file.js";
 import { promptMessage } from "../constants/promptMessage.js";
 import geminiReply from "../utils/gemini.js";
@@ -173,40 +174,59 @@ const getById = async (id) => {
   return recipes;
 };
 
-const getAll = async () => {
-const recipes = await RecipeModel.find()
-    .populate("createdBy", "fullName profileImage") 
+const getAll = async (page, limit) => {
+  const skip = (page - 1) * limit;
+  const recipes = await RecipeModel.find()
+    .populate("createdBy", "fullName profileImage")
+    .skip(skip)
+    .limit(limit);
+
   if (recipes.length === 0) {
     throw new Error("No recipes found");
   }
+
   return recipes;
 };
 
-// get recupes by name
+// get recipes by name
 
-const getByName = async (name) => {
+const getByName = async (name, page, limit) => {
+  const skip = (page - 1) * limit;
   const recipes = await RecipeModel.find({
-    title: { $regex: name, $options: "i" },
-  }).populate("createdBy", "fullName profileImage");
+    title: { $regex: `^${name}`, $options: "i" },
+  })
+    .populate("createdBy", "fullName profileImage")
+    .skip(skip)
+    .limit(limit);
+
   if (recipes.length === 0) {
     throw new Error("No recipes found");
   }
+
   return recipes;
 };
 
 //get recipes by user
-const getByUser = async (name) => {
-  const user = await UserModel.findOne({
-    fullName: { $regex: name, $options: "i" },
-  }).populate("createdBy", "fullName profileImage") 
-;
-  if (!user) {
+const getByUser = async (name, page, limit) => {
+    const skip = (page - 1) * limit;
+  const user = await UserModel.find({
+    fullName: { $regex: `^${name}`, $options: "i" },
+  });
+  
+  if (user.length === 0) {
     throw new Error("User not found");
   }
-  const recipes = await RecipeModel.find({ createdBy: user._id });
+    const userIds = user.map(u => u._id);
+
+  const recipes = await RecipeModel.find({ createdBy:{$in: userIds} })
+    .populate("createdBy", "fullName profileImage")
+    .skip(skip)
+    .limit(limit);
+
   if (recipes.length === 0) {
     throw new Error("No recipes found for this user");
   }
+
   return recipes;
 };
 

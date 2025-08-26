@@ -17,6 +17,7 @@ router.get("/user/:name", auth, recipeController.getByUser);
 
 // Get recipe by name
 router.get("/name/:name", recipeController.getByName);
+
 // Get recipe by id
 router.get("/:id", recipeController.getRecipeById);
 
