@@ -8,6 +8,7 @@ import authRoute from "./routers/authRoute.js";
 import recipeRoute from "./routers/recipeRoute.js";
 import categoryRoute from './routers/categoryRoute.js'
 import auth from "./middlewares/auth.js";
+import favoriteRoute from "./routers/favoriteRoute.js";
 const app = express();
 
 connectDB();
@@ -24,6 +25,9 @@ app.use("/api/recipe", auth, recipeRoute);
 
 //Category
 app.use("/api/category", auth, categoryRoute);
+
+// Favorites
+app.use("/api/favorites", auth, favoriteRoute);
 
 app.listen(config.port, () => {
   console.log(`Server running at port: ${config.port}....`);
