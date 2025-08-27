@@ -21,4 +21,7 @@ router.get("/name/:name", recipeController.getByName);
 // Get recipe by id
 router.get("/:id", recipeController.getRecipeById);
 
+//delete recipe
+router.delete("/:id", auth, recipeController.deleteRecipe);
+
 export default router;
