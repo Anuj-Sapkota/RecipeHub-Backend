@@ -107,6 +107,20 @@ const getByUser = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+//delete recipe controller
+const deleteRecipe = async (req, res) => {
+  const recipeId = req.params.id;
+  const user = req.user;
+
+  try {
+    const data = await recipeService.deleteRecipe(recipeId, user);
+
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
 export default {
   createRecipe,
   updateRecipe,
@@ -115,4 +129,5 @@ export default {
   getByUser,
   getByName,
   getAllRecipes,
+  deleteRecipe
 };

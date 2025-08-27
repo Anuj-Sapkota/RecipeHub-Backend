@@ -165,7 +165,9 @@ const rateRecipe = async (recipeId, rating, userId) => {
 
 //get recipes by id
 const getById = async (id) => {
-  const recipes = await RecipeModel.findById(id);
+  const recipes = await RecipeModel.findById(id)
+  .populate("createdBy", "fullName profileImage")
+  .populate("category", "name image");
 
   if (!recipes) {
     throw new Error("Recipe not found");
@@ -178,6 +180,7 @@ const getAll = async (page, limit) => {
   const skip = (page - 1) * limit;
   const recipes = await RecipeModel.find()
     .populate("createdBy", "fullName profileImage")
+    .populate("category", "name image")
     .skip(skip)
     .limit(limit);
 
@@ -196,6 +199,7 @@ const getByName = async (name, page, limit) => {
     title: { $regex: `^${name}`, $options: "i" },
   })
     .populate("createdBy", "fullName profileImage")
+    .populate("category", "name image")
     .skip(skip)
     .limit(limit);
 
@@ -220,6 +224,7 @@ const getByUser = async (name, page, limit) => {
 
   const recipes = await RecipeModel.find({ createdBy:{$in: userIds} })
     .populate("createdBy", "fullName profileImage")
+    .populate("category", "name image")
     .skip(skip)
     .limit(limit);
 
@@ -230,6 +235,24 @@ const getByUser = async (name, page, limit) => {
   return recipes;
 };
 
+//delete recipes
+
+const deleteRecipe = async (id) => {
+  const recipe = await getById(id);
+
+  if (!recipe) {
+    throw new Error("Recipe not found");
+  }
+
+  // Delete image from Cloudinary if exists
+  if (recipe.image?.public_id) {
+    await cloudinary.uploader.destroy(recipe.image.public_id);
+  }
+
+  const deletedRecipe = await RecipeModel.findByIdAndDelete(id);
+  
+  return deletedRecipe;
+}
 export default {
   create,
   update,
@@ -238,4 +261,5 @@ export default {
   getAll,
   getByName,
   getByUser,
+  deleteRecipe
 };
