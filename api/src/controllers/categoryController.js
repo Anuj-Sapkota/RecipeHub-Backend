@@ -12,7 +12,7 @@ const createCategory = async (req, res) => {
 
     res.status(201).json(data);
   } catch (error) {
-    res.status(500).json(error.message);
+    res.status(500).send(error.message);
   }
 };
 
@@ -22,7 +22,7 @@ const getAllCategories = async (req, res) => {
     const categories = await categoryService.getAllCategories();
     return res.status(200).json(categories);
   } catch (error) {
-    return res.status(500).json({ message: error?.message ?? error });
+    return res.status(500).send(error.message);
   }
 };
 
@@ -32,11 +32,11 @@ const getCategoryById = async (req, res) => {
     const { id } = req.params;
     const category = await categoryService.getCategoryById(id);
 
-    if (!category) return res.status(404).json({ message: "Category not found" });
+    if (!category) return res.status(404).send("Category not found");
 
     return res.status(200).json(category);
   } catch (error) {
-    return res.status(500).json({ message: error?.message ?? error });
+    return res.status(500).send(error.message);
   }
 };
 

@@ -24,13 +24,17 @@ const createCategory = async (paramId, file, payload) => {
 };
 
 const getAllCategories = async () => {
+  
   return Category.find().sort({ createdAt: -1 }).lean();
 };
 
 const getCategoryById = async (id) => {
+
   if (!mongoose.Types.ObjectId.isValid(id)) {
+
     return null;
   }
+
   return Category.findById(id).lean();
 };
 
