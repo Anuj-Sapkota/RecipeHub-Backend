@@ -12,7 +12,7 @@ export const addFavorite = async (req, res) => {
     const favorite = await addFavoriteService(userId, recipeId);
     res.status(201).json(favorite);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(400).send(err.message);
   }
 };
 
@@ -23,7 +23,7 @@ export const removeFavorite = async (req, res) => {
     await removeFavoriteService(userId, recipeId);
     res.status(200).json({ message: "Removed from favorites" });
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(400).send(err.message);
   }
 };
 
@@ -33,7 +33,7 @@ export const getFavorites = async (req, res) => {
     const favorites = await getFavoritesService(userId);
     res.status(200).json(favorites);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).send(err.message);
   }
 };
 
@@ -44,6 +44,6 @@ export const checkFavorite = async (req, res) => {
     const exists = await checkFavoriteService(userId, recipeId);
     res.status(200).json({ favorited: exists });
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(400).send(err.message);
   }
 };

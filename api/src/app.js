@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser";
 import authRoute from "./routers/authRoute.js";
 import recipeRoute from "./routers/recipeRoute.js";
 import categoryRoute from "./routers/categoryRoute.js";
-import favoriteRoute from "./routers/favoriteRoute.js";
+import favoriteRoute from './routers/favoriteRoute.js'
 import connectCloudinary from "./config/cloudinary.js";
 import multer from "multer";
 import auth from "./middlewares/auth.js";
