@@ -3,6 +3,7 @@ import Category from "../models/Category.js";
 import uploadFile from "../utils/file.js";
 
 const createCategory = async (paramId, file, payload) => {
+
   let uploadedImage = "";
 
   if (file) {
@@ -21,6 +22,12 @@ const createCategory = async (paramId, file, payload) => {
   });
 
   return createdCategory;
+
+  const category = new Category(payload);
+  const saved = await category.save();
+  
+  return saved;
+
 };
 
 const getAllCategories = async () => {
