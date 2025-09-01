@@ -7,4 +7,8 @@ const router = express.Router();
 
 router.post("/", roleBasedAccess(ADMIN), categoryController.createCategory);
 
+// new routes
+router.get("/", categoryController.getAllCategories);
+router.get("/:id", categoryController.getCategoryById);
+
 export default router;
