@@ -8,6 +8,7 @@ import authRoute from "./routers/authRoute.js";
 import recipeRoute from "./routers/recipeRoute.js";
 import categoryRoute from "./routers/categoryRoute.js";
 import favoriteRoute from './routers/favoriteRoute.js'
+import commentRoute from "./routers/commentRoute.js";
 import connectCloudinary from "./config/cloudinary.js";
 import multer from "multer";
 import auth from "./middlewares/auth.js";
@@ -35,6 +36,9 @@ app.use("/api/category", auth, upload.single("image"), categoryRoute);
 
 // Favorites
 app.use("/api/favorites", favoriteRoute);
+
+// Comments
+app.use("/api/recipes", auth, commentRoute);
 
 app.listen(config.port, () => {
   console.log(`Server running at port: ${config.port}....`);
