@@ -5,7 +5,6 @@ const createCategory = async (req, res) => {
 
   try {
     const data = await categoryService.createCategory(
-      
       req.params.id,
       req.file,
       input
@@ -13,7 +12,7 @@ const createCategory = async (req, res) => {
 
     res.status(201).json(data);
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).json(error.message);
   }
 };
 
