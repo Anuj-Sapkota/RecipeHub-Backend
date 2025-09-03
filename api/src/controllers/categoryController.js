@@ -5,8 +5,8 @@ const createCategory = async (req, res) => {
 
   try {
     const data = await categoryService.createCategory(
-      req.file,
-      input
+      input,
+      req.file
     );
 
     res.status(201).json(data);
@@ -53,7 +53,7 @@ export const updateCategory = async (req, res) => {
 // delete category
 export const deleteCategory = async (req, res) => {
   try {
-    const data = await categoryService.deleteCategory(req.params.id);
+    await categoryService.deleteCategory(req.params.id);
     res.status(200).send("Category deleted successfully.");
   } catch (error) {
     res.status(500).send(error.message);

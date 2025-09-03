@@ -1,36 +1,30 @@
 
-const createCategory = async (file, data) => {
-  // if category with the same name exists, throw an error
-  const categoryExists = await categoryModel.findOne({ name: data.name });
-  if (categoryExists) {
-    throw new Error("Category already exists!");
-  }
-
-  let uploadedImage = "";
-
-  if (file) {
-    const rawFileName = data.name;
-    // random string for uniqueness in filename
-    const randomStr = Math.random().toString(36).substring(2, 7);
-    //filename generation
-    const filename = (
-      rawFileName.replace(/\s+/g, "-") +
-      "-" +
-      randomStr
-    ).toLowerCase();
-    uploadedImage = await uploadFile(file, filename);
-  }
-
-  // Check using the getById function with is to be made.
-  const createdCategory = await categoryModel.create({
+import categoryModel from "../models/Category.js";
+import uploadImages from "../utils/file.js";
+import cloudinary from "cloudinary";
+// create category
+export const createCategory = async (data, file) => {
+  const category = await categoryModel.create({
     ...data,
-    image: uploadedImage
-      ? { url: uploadedImage.secure_url, public_id: uploadedImage.public_id }
-      : { url: "", public_id: "" },
+    image: { url: "", public_id: "" }, // placeholder
   });
 
-  return createdCategory;
+  // uploading the image with category._id as the filename
+  if (file) {
+    const filename = category._id.toString(); 
+    const uploadedImage = await uploadImages(file, filename);
+
+    // update category with Cloudinary info
+    category.image = {
+      url: uploadedImage.secure_url,
+      public_id: uploadedImage.public_id,
+    };
+    await category.save();
+  }
+
+  return category;
 };
+
 
 const getAllCategories = async () => {
   const categories = await categoryModel.find().sort({ createdAt: -1 }).lean();
@@ -64,14 +58,7 @@ export const updateCategory = async (id, file, data) => {
       await cloudinary.uploader.destroy(category.image.public_id);
     }
     //taking the name from the name
-    const rawFileName = data.name ?? category.name;
-    // random string for uniqueness in filename
-    const randomStr = Math.random().toString(36).substring(2, 7); // 5 chars
-    const filename = (
-      rawFileName.replace(/\s+/g, "-") +
-      "-" +
-      randomStr
-    ).toLowerCase();
+    const filename = category._id.toString();
     uploadedImage = await uploadImages(file, filename);
   }
 
@@ -79,9 +66,9 @@ export const updateCategory = async (id, file, data) => {
     id,
     {
       ...data,
-      image: uploadedImage
+    image: uploadedImage
         ? { url: uploadedImage.secure_url, public_id: uploadedImage.public_id }
-        : { url: "", public_id: "" },
+        : category.image, 
     },
     { new: true }
   );
