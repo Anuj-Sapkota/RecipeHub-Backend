@@ -5,7 +5,6 @@ const createCategory = async (req, res) => {
 
   try {
     const data = await categoryService.createCategory(
-      req.params.id,
       req.file,
       input
     );
@@ -45,7 +44,7 @@ const getCategoryById = async (req, res) => {
 //update category
 export const updateCategory = async (req, res) => {
   try {
-    const data = await update(req.params.id, req.body, req.user);
+    const data = await categoryService.updateCategory(req.params.id, req.file, req.body);
     res.status(201).json(data);
   } catch (error) {
     res.status(500).send(error.message);
@@ -54,17 +53,17 @@ export const updateCategory = async (req, res) => {
 // delete category
 export const deleteCategory = async (req, res) => {
   try {
-    const data = await deleteCat(req.params.id, req.user);
-    res.status(200).json(data);
+    const data = await categoryService.deleteCategory(req.params.id);
+    res.status(200).send("Category deleted successfully.");
   } catch (error) {
     res.status(500).send(error.message);
   }
 };
 //get category by name
-
 export const getCategoryByName = async (req, res) => {
   try {
-    const data = getByName(req.body.title);
+    const data = await categoryService.getByName(req.params.name);
+    
     res.status(200).json(data);
   } catch (error) {
     res.status(500).send(error.message);

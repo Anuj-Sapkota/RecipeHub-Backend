@@ -7,7 +7,10 @@ const categorySchema = new mongoose.Schema({
     unique: [true, "Name must be unique"],
     trim: true,
   },
-  image: { type: String },
+ image: {
+    url: { type: String, default: "" },
+    public_id: { type: String, default: "" },
+  },
   createdAt: {
     type: Date,
     default: Date.now,
