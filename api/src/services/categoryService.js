@@ -53,10 +53,12 @@ export const updateCategory = async (id, file, data) => {
   let uploadedImage = "";
 
   if (file) {
+
     //delete the old image from cloudinary
     if (category.image?.public_id) {
       await cloudinary.uploader.destroy(category.image.public_id);
     }
+    
     //taking the name from the name
     const filename = category._id.toString();
     uploadedImage = await uploadImages(file, filename);

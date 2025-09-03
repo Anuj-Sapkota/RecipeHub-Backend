@@ -45,6 +45,7 @@ const getCategoryById = async (req, res) => {
 export const updateCategory = async (req, res) => {
   try {
     const data = await categoryService.updateCategory(req.params.id, req.file, req.body);
+
     res.status(201).json(data);
   } catch (error) {
     res.status(500).send(error.message);
@@ -54,6 +55,7 @@ export const updateCategory = async (req, res) => {
 export const deleteCategory = async (req, res) => {
   try {
     await categoryService.deleteCategory(req.params.id);
+    
     res.status(200).send("Category deleted successfully.");
   } catch (error) {
     res.status(500).send(error.message);
