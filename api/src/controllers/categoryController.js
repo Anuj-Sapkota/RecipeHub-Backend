@@ -41,4 +41,34 @@ const getCategoryById = async (req, res) => {
   }
 };
 
-export default { createCategory, getAllCategories, getCategoryById };
+
+//update category
+export const updateCategory = async (req, res) => {
+  try {
+    const data = await update(req.params.id, req.body, req.user);
+    res.status(201).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+// delete category
+export const deleteCategory = async (req, res) => {
+  try {
+    const data = await deleteCat(req.params.id, req.user);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+//get category by name
+
+export const getCategoryByName = async (req, res) => {
+  try {
+    const data = getByName(req.body.title);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+export default { createCategory, getAllCategories, getCategoryById, updateCategory, deleteCategory, getCategoryByName };

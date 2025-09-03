@@ -42,4 +42,27 @@ const getCategoryById = async (id) => {
   return Category.findById(id).lean();
 };
 
-export default { createCategory, getAllCategories, getCategoryById };
+//update category
+export const update = async (id, data) => {
+  const updatedCategory = await categoryModel.findByIdAndUpdate(id, data, {
+    new: true,
+  });
+  return updatedCategory;
+};
+
+//delete category
+export const deleteCat = async (id, deletedBy) => {
+  const deletedCategory = await categoryModel.findByIdAndDelete(id, {
+    new: true,
+  });
+  return deletedCategory;
+};
+
+// get category by name
+export const getByName = async (title) => {
+  const categoryName = await categoryModel.find({
+    title: { $regex: title, $options: "i" },
+  });
+  return categoryName;
+};
+export default { createCategory, getAllCategories, getCategoryById, getCategoryByName, deleteCategory, updateCategory };
