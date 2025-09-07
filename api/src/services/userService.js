@@ -44,6 +44,7 @@ const update = async (userId, currUserId, data, file) => {
     const filename = user._id.toString();
     profileImage = await uploadFile(file, filename);
   }
+
   const updatedData = await userModel
     .findByIdAndUpdate(
       userId,
@@ -66,6 +67,7 @@ const update = async (userId, currUserId, data, file) => {
 const remove = async(userId, currUser) => {
     const user = await userModel.findById(userId);
     console.log(currUser.role)
+
     //check if the user is authorized or not
     if ((user._id.toString() != (currUser._id) && !currUser.role.includes("ADMIN")))
     {
@@ -101,6 +103,7 @@ const getMe = async(currUser) => {
           statusCode: 404
         });
   }
+  
   return user;
 
 }
