@@ -4,11 +4,13 @@ import UserModel from "../models/User.js";
 
 const create = async (recipeId, userId, content) => {
   const recipe = await RecipeModel.findById(recipeId);
+
   if (!recipe) {
     throw new Error("Recipe not found");
   }
 
   const user = await UserModel.findById(userId);
+
   if (!user) {
     throw new Error("User not found");
   }
@@ -18,6 +20,7 @@ const create = async (recipeId, userId, content) => {
     recipe: recipeId,
     user: userId,
   });
+
   return comment;
 };
 
@@ -28,11 +31,13 @@ const getByRecipeId = async (recipeId, page = 1, limit = 10) => {
     .sort({ createdAt: -1 })
     .skip(skip)
     .limit(limit); // Latest comments first
+
   return comments;
 };
 
 const update = async (commentId, userId, newContent) => {
   const comment = await CommentModel.findById(commentId);
+
   if (!comment) {
     throw new Error("Comment not found");
   }
@@ -43,11 +48,13 @@ const update = async (commentId, userId, newContent) => {
 
   comment.content = newContent;
   await comment.save();
+
   return comment;
 };
 
 const remove = async (commentId, userId) => {
   const comment = await CommentModel.findById(commentId);
+  
   if (!comment) {
     throw new Error("Comment not found");
   }
@@ -58,7 +65,7 @@ const remove = async (commentId, userId) => {
   }
 
   await CommentModel.findByIdAndDelete(commentId);
-  return { message: "Comment deleted successfully" };
+  
 };
 
 export default {
