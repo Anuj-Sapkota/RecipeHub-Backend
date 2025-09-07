@@ -13,6 +13,7 @@ import commentRoute from "./routers/commentRoute.js";
 import connectCloudinary from "./config/cloudinary.js";
 import multer from "multer";
 import auth from "./middlewares/auth.js";
+
 const app = express();
 
 const upload = multer({
