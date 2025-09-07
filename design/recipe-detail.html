@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Detail</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Navbar (can be copied from all-recipes.html or a generic layout) -->
+  <nav class="bg-white shadow-lg flex items-center justify-between px-4 py-3 sm:px-8">
+    <!-- Mobile Menu Icon (visible on small only) -->
+    <div class="sm:hidden">
+      <button class="text-3xl font-bold text-gray-700">=</button>
+    </div>
+
+    <!-- Logo (visible on sm and above) -->
+    <div class="hidden sm:block">
+      <img
+        class="w-40"
+        src="assets/images/recipehub-black-text.png"
+        alt="logo"
+      />
+    </div>
+
+    <!-- Search Bar (centered, always visible) -->
+    <div class="flex-1 flex justify-center px-2">
+      <div class="relative w-full max-w-xs">
+        <input
+          type="text"
+          placeholder="Search"
+          class="w-full pl-10 pr-3 py-1.5 rounded-full bg-purple-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-300 text-sm"
+        />
+        <svg
+          class="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Profile Icon (mobile) -->
+    <div class="flex items-center sm:hidden">
+      <img
+        src="https://randomuser.me/api/portraits/men/32.jpg"
+        alt="User"
+        class="w-8 h-8 rounded-full border-2 border-black"
+      />
+    </div>
+
+    <!-- Nav Links + Profile (shown on sm and up) -->
+    <div class="hidden sm:flex items-center space-x-32">
+      <a href="#" class="font-bold text-black text-base hover:text-gray-700"
+        >Home</a
+      >
+      <a href="#" class="font-bold text-black text-base hover:text-gray-700"
+        >Recipes</a
+      >
+      <a href="#" class="font-bold text-black text-base hover:text-gray-700"
+        >About</a
+      >
+      <img
+        src="https://randomuser.me/api/portraits/men/32.jpg"
+        alt="User"
+        class="w-10 h-10 rounded-full border-2 border-black ml-2"
+      />
+    </div>
+  </nav>
+
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-white shadow rounded-lg p-6 mb-8">
+      <h1 class="text-3xl font-bold mb-4">[Recipe Title]</h1>
+      <img src="assets/images/pexels-lakshman-jung-khadka-850490-20780686.jpg" alt="Recipe Image" class="w-full h-64 object-cover rounded-md mb-4">
+      <p class="text-gray-700 mb-4">[Recipe Description]</p>
+      <h2 class="text-2xl font-semibold mb-2">Ingredients</h2>
+      <ul class="list-disc list-inside mb-4">
+        <li>Ingredient 1</li>
+        <li>Ingredient 2</li>
+        <li>Ingredient 3</li>
+      </ul>
+      <h2 class="text-2xl font-semibold mb-2">Instructions</h2>
+      <ol class="list-decimal list-inside mb-4">
+        <li>Step 1</li>
+        <li>Step 2</li>
+        <li>Step 3</li>
+      </ol>
+      <div class="flex items-center text-yellow-500 mb-4">
+        ★ ★ ★ ★ ☆ (4.5/5)
+      </div>
+    </div>
+
+    <section id="comments-section" class="bg-white shadow rounded-lg p-6">
+      <h2 class="text-2xl font-bold mb-4">Comments</h2>
+
+      <!-- Comment Input Form -->
+      <div class="mb-6">
+        <textarea
+          class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          rows="4"
+          placeholder="Write your comment here..."
+        ></textarea>
+        <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Submit Comment</button>
+      </div>
+
+      <!-- Existing Comments -->
+      <div class="space-y-4">
+        <!-- Single Comment Start -->
+        <div class="border-b border-gray-200 pb-4 last:border-b-0">
+          <div class="flex items-center mb-2">
+            <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="User Avatar" class="w-8 h-8 rounded-full mr-3">
+            <div>
+              <p class="font-semibold text-gray-900">Jane Doe</p>
+              <p class="text-sm text-gray-500">2 days ago</p>
+            </div>
+          </div>
+          <p class="text-gray-800">This recipe looks amazing! Can't wait to try it.</p>
+          <div class="flex space-x-2 mt-2">
+            <button class="text-blue-500 hover:underline text-sm">Edit</button>
+            <button class="text-red-500 hover:underline text-sm">Delete</button>
+          </div>
+        </div>
+        <!-- Single Comment End -->
+
+        <!-- Another Comment -->
+        <div class="border-b border-gray-200 pb-4 last:border-b-0">
+          <div class="flex items-center mb-2">
+            <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="User Avatar" class="w-8 h-8 rounded-full mr-3">
+            <div>
+              <p class="font-semibold text-gray-900">John Smith</p>
+              <p class="text-sm text-gray-500">1 day ago</p>
+            </div>
+          </div>
+          <p class="text-gray-800">I tried this last night and it was delicious!</p>
+          <div class="flex space-x-2 mt-2">
+            <button class="text-blue-500 hover:underline text-sm">Edit</button>
+            <button class="text-red-500 hover:underline text-sm">Delete</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (can be copied from all-recipes.html or a generic layout) -->
+  <footer class="bg-black text-white py-8 px-4 mt-8">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row md:justify-between md:items-center">
+      <div class="mb-6 md:mb-0 flex flex-col gap-4 items-start">
+        <img class="w-40" src="assets/images/recipehub-white-text.png" alt="logo"/>
+        <button class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded mb-2 text-sm">Subscribe to Newsletter</button>
+        <span class="text-xs">© 2025 RecipeHub</span>
+      </div>
+      <div class="flex flex-col md:flex-row md:space-x-16 mb-6 md:mb-0">
+        <div class="mb-4 md:mb-0">
+          <span class="font-semibold text-md">Pages</span>
+          <ul class="text-gray-300 text-md space-y-1 mt-1">
+            <li><a href="#" class="hover:underline">Home</a></li>
+            <li><a href="#" class="hover:underline">Recipes</a></li>
+            <li><a href="#" class="hover:underline">About</a></li>
+          </ul>
+          </div>
+      </div>
+        
+        
+        <div>
+          <span class="font-semibold text-md">User Agreement</span>
+          <ul class="text-gray-300 text-md space-y-1 mt-1">
+            <li><a href="#" class="hover:underline">User Agreement</a></li>
+            <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+          </ul>
+       
+      
+      <div class="flex flex-col items-start">
+        <span class="font-semibold text-md  mt-4 mb-1">Connect with us through</span>
+        <div class="flex space-x-3">
+          <a href="#" aria-label="Instagram"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5a5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5a3.75 3.75 0 0 0 0-7.5zm5.25.75a1 1 0 1 1-2 0a1 1 0 0 1 2 0z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 4.991 3.657 9.128 8.438 9.877v-6.987h-2.54v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89c1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.63.771-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.987C18.343 21.128 22 16.991 22 12"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46 5.924c-.793.352-1.645.59-2.54.698a4.48 4.48 0 0 0 1.963-2.475a8.94 8.94 0 0 1-2.828 1.082a4.48 4.48 0 0 0-7.64 4.086A12.72 12.72 0 0 1 3.11 4.86a4.48 4.48 0 0 0 1.39 5.976a4.47 4.47 0 0 1-2.03-.56v.057a4.48 4.48 0 0 0 3.6 4.393a4.5 4.5 0 0 1-2.025.077a4.48 4.48 0 0 0 4.18 3.11A8.98 8.98 0 0 1 2 19.54a12.7 12.7 0 0 0 6.88 2.02c8.26 0 12.78-6.84 12.78-12.78c0-.195-.004-.39-.013-.583A9.14 9.14 0 0 0 24 4.59a8.98 8.98 0 0 1-2.54.698z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M21.8 8.001s-.2-1.4-.8-2.001c-.8-.8-1.7-.8-2.1-.8C15.1 5 12 5 12 5h-.1s-3.1 0-6.9.2c-.4 0-1.3 0-2.1.8c-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.6c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.2.9c1.6.2 6.8.2 6.8.2s3.1 0 6.9-.2c.4 0 1.3 0 2.1-.8c.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.6c0-1.6-.2-3.2-.2-3.2zM9.8 15.1V8.9l6.4 3.1l-6.4 3.1z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const recipeId = urlParams.get('recipeId');
+
+      if (!recipeId) {
+        console.error("Recipe ID not found in URL");
+        return;
+      }
+
+      // Fetch Recipe Details
+      try {
+        const recipeResponse = await fetch(`/api/recipe/${recipeId}`);
+        if (!recipeResponse.ok) {
+          throw new Error(`HTTP error! status: ${recipeResponse.status}`);
+        }
+        const recipe = await recipeResponse.json();
+        
+        // Update Recipe Details in HTML (placeholders)
+        document.querySelector('h1').textContent = recipe.title;
+        document.querySelector('.max-w-4xl img').src = recipe.image.url || 'assets/images/default-recipe.jpg';
+        document.querySelector('.max-w-4xl p').textContent = recipe.description;
+        
+        const ingredientsList = document.querySelector('.max-w-4xl ul');
+        ingredientsList.innerHTML = '';
+        recipe.ingredients.forEach(ingredient => {
+          const li = document.createElement('li');
+          li.textContent = ingredient;
+          ingredientsList.appendChild(li);
+        });
+
+        const instructionsList = document.querySelector('.max-w-4xl ol');
+        instructionsList.innerHTML = '';
+        recipe.instructions.forEach(instruction => {
+          const li = document.createElement('li');
+          li.textContent = instruction;
+          instructionsList.appendChild(li);
+        });
+        // Display average rating (you might need to format this based on your backend)
+        document.querySelector('.max-w-4xl .flex.items-center.text-yellow-500').textContent = `★ ${recipe.averageRating}/5`;
+
+      } catch (error) {
+        console.error("Error fetching recipe details:", error);
+      }
+
+      let currentPage = 1;
+      const commentsPerPage = 10;
+
+      const fetchComments = async (append = false) => {
+        try {
+          const commentsResponse = await fetch(`/api/recipes/${recipeId}/comments?page=${currentPage}&limit=${commentsPerPage}`);
+          if (!commentsResponse.ok) {
+            throw new Error(`HTTP error! status: ${commentsResponse.status}`);
+          }
+          const newComments = await commentsResponse.json();
+          
+          const commentsContainer = document.querySelector('#comments-section .space-y-4');
+          if (!append) {
+            commentsContainer.innerHTML = ''; // Clear existing comments if not appending
+          }
+
+          if (newComments.length === 0 && currentPage > 1) {
+            alert('No more comments to load.');
+            loadMoreButton.style.display = 'none'; // Hide button if no more comments
+            return;
+          } else if (newComments.length < commentsPerPage) {
+            loadMoreButton.style.display = 'none'; // Hide button if less than limit
+          } else {
+            loadMoreButton.style.display = 'block'; // Show button if there might be more
+          }
+
+          newComments.forEach(comment => {
+            const commentElement = `
+              <div class="border-b border-gray-200 pb-4 last:border-b-0">
+                <div class="flex items-center mb-2">
+                  <img src="${comment.user.profileImage || 'https://randomuser.me/api/portraits/men/32.jpg'}" alt="User Avatar" class="w-8 h-8 rounded-full mr-3">
+                  <div>
+                    <p class="font-semibold text-gray-900">${comment.user.fullName}</p>
+                    <p class="text-sm text-gray-500">${new Date(comment.createdAt).toLocaleDateString()}</p>
+                  </div>
+                </div>
+                <p class="text-gray-800">${comment.content}</p>
+                <div class="flex space-x-2 mt-2">
+                  <button class="text-blue-500 hover:underline text-sm edit-comment-btn" data-comment-id="${comment._id}">Edit</button>
+                  <button class="text-red-500 hover:underline text-sm delete-comment-btn" data-comment-id="${comment._id}">Delete</button>
+                </div>
+              </div>
+            `;
+            commentsContainer.insertAdjacentHTML('beforeend', commentElement);
+          });
+        } catch (error) {
+          console.error("Error fetching comments:", error);
+        }
+      };
+
+      fetchComments(); // Initial fetch of comments
+
+      // Add Load More button
+      const loadMoreButton = document.createElement('button');
+      loadMoreButton.className = 'mt-4 bg-gray-200 px-4 py-2 rounded hover:bg-gray-300 w-full';
+      loadMoreButton.textContent = 'Load More Comments';
+      document.querySelector('#comments-section').appendChild(loadMoreButton);
+
+      loadMoreButton.addEventListener('click', () => {
+        currentPage++;
+        fetchComments(true); // Append new comments
+      });
+
+      // Handle new comment submission
+      const commentTextarea = document.querySelector('#comments-section textarea');
+      const submitCommentBtn = document.querySelector('#comments-section button');
+
+      submitCommentBtn.addEventListener('click', async () => {
+        const content = commentTextarea.value.trim();
+        if (content === '') {
+          alert('Comment cannot be empty!');
+          return;
+        }
+
+        try {
+          const response = await fetch(`/api/recipes/${recipeId}/comments`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('token')}` // Get token from localStorage
+            },
+            body: JSON.stringify({ content })
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          commentTextarea.value = ''; // Clear textarea
+          currentPage = 1; // Reset to first page to show new comment at top
+          fetchComments(); // Refresh comments
+        } catch (error) {
+          console.error("Error posting comment:", error);
+          alert("Failed to post comment. Please try again.");
+        }
+      });
+
+      // Implement edit and delete comment functionality
+      const commentsContainer = document.querySelector('#comments-section .space-y-4');
+      commentsContainer.addEventListener('click', async (event) => {
+        if (event.target.classList.contains('edit-comment-btn')) {
+          const commentId = event.target.dataset.commentId;
+          const commentElement = event.target.closest('.border-b');
+          const currentContentElement = commentElement.querySelector('.text-gray-800');
+          const currentContent = currentContentElement.textContent;
+
+          // Create a textarea for editing
+          const editArea = document.createElement('textarea');
+          editArea.className = 'w-full p-2 border border-gray-300 rounded-md';
+          editArea.rows = '3';
+          editArea.value = currentContent;
+
+          // Create Save and Cancel buttons
+          const saveButton = document.createElement('button');
+          saveButton.className = 'mt-2 bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 mr-2';
+          saveButton.textContent = 'Save';
+
+          const cancelButton = document.createElement('button');
+          cancelButton.className = 'mt-2 bg-gray-300 text-gray-800 px-3 py-1 rounded-md hover:bg-gray-400';
+          cancelButton.textContent = 'Cancel';
+
+          // Replace content with edit form
+          currentContentElement.replaceWith(editArea);
+          event.target.parentElement.replaceWith(saveButton, cancelButton);
+
+          saveButton.addEventListener('click', async () => {
+            const newContent = editArea.value.trim();
+            if (newContent === '') {
+              alert('Comment cannot be empty!');
+              return;
+            }
+
+            try {
+              const response = await fetch(`/api/recipes/${commentId}`, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ content: newContent })
+              });
+
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+
+              fetchComments(); // Refresh comments
+            } catch (error) {
+              console.error("Error updating comment:", error);
+              alert("Failed to update comment. Please try again.");
+            }
+          });
+
+          cancelButton.addEventListener('click', () => {
+            fetchComments(); // Revert to original comments
+          });
+
+        } else if (event.target.classList.contains('delete-comment-btn')) {
+          const commentId = event.target.dataset.commentId;
+          if (confirm('Are you sure you want to delete this comment?')) {
+            try {
+              const response = await fetch(`/api/recipes/${commentId}`, {
+                method: 'DELETE',
+                headers: {
+                  'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+              });
+
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+
+              fetchComments(); // Refresh comments
+            } catch (error) {
+              console.error("Error deleting comment:", error);
+              alert("Failed to delete comment. Please try again.");
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
