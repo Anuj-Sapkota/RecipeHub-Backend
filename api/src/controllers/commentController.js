@@ -45,11 +45,13 @@ const updateComment = async (req, res) => {
 };
 
 const deleteComment = async (req, res) => {
+  
   try {
     const { commentId } = req.params;
     const userId = req.user._id;
 
     await commentService.remove(commentId, userId);
+
     res.status(200).send("Comment deleted successfully");
   } catch (error) {
     res.status(500).send(error.message);
