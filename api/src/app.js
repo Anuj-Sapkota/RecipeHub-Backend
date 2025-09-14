@@ -7,8 +7,8 @@ import cookieParser from "cookie-parser";
 import authRoute from "./routers/authRoute.js";
 import recipeRoute from "./routers/recipeRoute.js";
 import categoryRoute from "./routers/categoryRoute.js";
-import favoriteRoute from './routers/favoriteRoute.js'
-import userRoute from './routers/userRoute.js';
+import favoriteRoute from "./routers/favoriteRoute.js";
+import userRoute from "./routers/userRoute.js";
 import commentRoute from "./routers/commentRoute.js";
 import connectCloudinary from "./config/cloudinary.js";
 import multer from "multer";
@@ -31,7 +31,7 @@ app.use(logger);
 app.use("/api/auth", authRoute);
 
 // Recipe
-app.use("/api/recipe", auth, upload.single("image"),  recipeRoute);
+app.use("/api/recipe", auth, upload.single("image"), recipeRoute);
 
 //Category
 app.use("/api/category", auth, upload.single("image"), categoryRoute);
@@ -40,7 +40,7 @@ app.use("/api/category", auth, upload.single("image"), categoryRoute);
 app.use("/api/favorites", favoriteRoute);
 
 //User
-app.use("/api/user", auth, upload.single("profileImage"), userRoute)
+app.use("/api/user", auth, upload.single("profileImage"), userRoute);
 
 // Comments
 app.use("/api/recipes", auth, commentRoute);

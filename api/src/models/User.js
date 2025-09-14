@@ -29,8 +29,8 @@ const userSchema = new mongoose.Schema({
     enum: [USER, ADMIN],
   },
   profileImage: {
-    url: { type: String, default : ""},
-    public_url: {type: String, default: ""}
+    url: { type: String, default: "" },
+    public_url: { type: String, default: "" },
   },
   bio: String,
   createdAt: {

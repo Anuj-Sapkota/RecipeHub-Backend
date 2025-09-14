@@ -54,7 +54,7 @@ const update = async (commentId, userId, newContent) => {
 
 const remove = async (commentId, userId) => {
   const comment = await CommentModel.findById(commentId);
-  
+
   if (!comment) {
     throw new Error("Comment not found");
   }
@@ -65,7 +65,6 @@ const remove = async (commentId, userId) => {
   }
 
   await CommentModel.findByIdAndDelete(commentId);
-  
 };
 
 export default {

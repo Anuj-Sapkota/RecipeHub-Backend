@@ -9,28 +9,26 @@ const update = async (userId, currUserId, data, file) => {
   const user = await userModel.findById(userId);
 
   if (!user) {
-   throw({
-          message: "User does not exists!",
-          statusCode: 404
-        });
+    throw {
+      message: "User does not exists!",
+      statusCode: 404,
+    };
   }
 
   if (userId != currUserId) {
-    throw({
-          message: "Unauthorized!",
-          statusCode: 403
-        });
+    throw {
+      message: "Unauthorized!",
+      statusCode: 403,
+    };
   }
 
   for (let field of forbiddenFields) {
     if (field in data) {
-      throw(
-      {
-          message: `Cannot Update ${field}`,
-          statusCode: 403
-        }
-    );
-  }
+      throw {
+        message: `Cannot Update ${field}`,
+        statusCode: 403,
+      };
+    }
   }
   //to update the profile pic
   let profileImage = "";
@@ -52,7 +50,7 @@ const update = async (userId, currUserId, data, file) => {
       {
         fullName: data.fullName,
         profileImage: profileImage
-          ? {url: profileImage.secure_url, public_id: profileImage.public_id}
+          ? { url: profileImage.secure_url, public_id: profileImage.public_id }
           : user.profileImage,
         bio: data.bio ?? user.bio,
       },
@@ -64,47 +62,46 @@ const update = async (userId, currUserId, data, file) => {
 };
 
 //delete the user
-const remove = async(userId, currUser) => {
-    const user = await userModel.findById(userId);
-    console.log(currUser.role)
+const remove = async (userId, currUser) => {
+  const user = await userModel.findById(userId);
+  console.log(currUser.role);
 
-    //check if the user is authorized or not
-    if ((user._id.toString() != (currUser._id) && !currUser.role.includes("ADMIN")))
-    {
-        throw({
-          message: "Unauthorized!",
-          statusCode: 403
-        });
-    }
-
-    if (!user) {
-        throw({
-          message: "User does not exists!",
-          statusCode: 404
-        });
-    }
-  
-   if (user.profileImage?.public_id) {
-      await cloudinary.uploader.destroy(user.profileImage.public_id);
-      console.log("Deleted")
-    }
-
-    await userModel.findByIdAndDelete(userId);
-
-}
-
-// get the current user data
-const getMe = async(currUser) => {
-  const user = await userModel.findById(currUser._id).select("-password -profileImage.public_id");
+  //check if the user is authorized or not
+  if (user._id.toString() != currUser._id && !currUser.role.includes("ADMIN")) {
+    throw {
+      message: "Unauthorized!",
+      statusCode: 403,
+    };
+  }
 
   if (!user) {
-     throw({
-          message: "User does not exists!",
-          statusCode: 404
-        });
+    throw {
+      message: "User does not exists!",
+      statusCode: 404,
+    };
   }
-  
-  return user;
 
-}
+  if (user.profileImage?.public_id) {
+    await cloudinary.uploader.destroy(user.profileImage.public_id);
+    console.log("Deleted");
+  }
+
+  await userModel.findByIdAndDelete(userId);
+};
+
+// get the current user data
+const getMe = async (currUser) => {
+  const user = await userModel
+    .findById(currUser._id)
+    .select("-password -profileImage.public_id");
+
+  if (!user) {
+    throw {
+      message: "User does not exists!",
+      statusCode: 404,
+    };
+  }
+
+  return user;
+};
 export default { update, remove, getMe };

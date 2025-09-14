@@ -1,4 +1,3 @@
-
 import categoryModel from "../models/Category.js";
 import uploadImages from "../utils/file.js";
 import cloudinary from "cloudinary";
@@ -11,7 +10,7 @@ export const createCategory = async (data, file) => {
 
   // uploading the image with category._id as the filename
   if (file) {
-    const filename = category._id.toString(); 
+    const filename = category._id.toString();
     const uploadedImage = await uploadImages(file, filename);
 
     // update category with Cloudinary info
@@ -24,7 +23,6 @@ export const createCategory = async (data, file) => {
 
   return category;
 };
-
 
 const getAllCategories = async () => {
   const categories = await categoryModel.find().sort({ createdAt: -1 }).lean();
@@ -53,12 +51,11 @@ export const updateCategory = async (id, file, data) => {
   let uploadedImage = "";
 
   if (file) {
-
     //delete the old image from cloudinary
     if (category.image?.public_id) {
       await cloudinary.uploader.destroy(category.image.public_id);
     }
-    
+
     //taking the name from the name
     const filename = category._id.toString();
     uploadedImage = await uploadImages(file, filename);
@@ -68,9 +65,9 @@ export const updateCategory = async (id, file, data) => {
     id,
     {
       ...data,
-    image: uploadedImage
+      image: uploadedImage
         ? { url: uploadedImage.secure_url, public_id: uploadedImage.public_id }
-        : category.image, 
+        : category.image,
     },
     { new: true }
   );

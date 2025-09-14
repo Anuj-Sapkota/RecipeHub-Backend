@@ -1,7 +1,6 @@
 import userService from "../services/userService.js";
 
 const updateUser = async (req, res) => {
-
   try {
     const currUserId = req.user._id;
     const input = req.body;
@@ -16,7 +15,6 @@ const updateUser = async (req, res) => {
 };
 //delete user
 const deleteUser = async (req, res) => {
-
   try {
     const currUser = req.user;
     const userId = req.params.id;
@@ -29,7 +27,6 @@ const deleteUser = async (req, res) => {
 };
 // get the logged in user
 const getCurrentUser = async (req, res) => {
-
   try {
     const currUser = req.user;
     const data = await userService.getMe(currUser);
