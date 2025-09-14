@@ -166,8 +166,8 @@ const rateRecipe = async (recipeId, rating, userId) => {
 //get recipes by id
 const getById = async (id) => {
   const recipes = await RecipeModel.findById(id)
-  .populate("createdBy", "fullName profileImage")
-  .populate("category", "name image");
+    .populate("createdBy", "fullName profileImage")
+    .populate("category", "name image");
 
   if (!recipes) {
     throw new Error("Recipe not found");
@@ -212,17 +212,17 @@ const getByName = async (name, page, limit) => {
 
 //get recipes by user
 const getByUser = async (name, page, limit) => {
-    const skip = (page - 1) * limit;
+  const skip = (page - 1) * limit;
   const user = await UserModel.find({
     fullName: { $regex: `^${name}`, $options: "i" },
   });
-  
+
   if (user.length === 0) {
     throw new Error("User not found");
   }
-    const userIds = user.map(u => u._id);
+  const userIds = user.map((u) => u._id);
 
-  const recipes = await RecipeModel.find({ createdBy:{$in: userIds} })
+  const recipes = await RecipeModel.find({ createdBy: { $in: userIds } })
     .populate("createdBy", "fullName profileImage")
     .populate("category", "name image")
     .skip(skip)
@@ -250,9 +250,9 @@ const deleteRecipe = async (id) => {
   }
 
   const deletedRecipe = await RecipeModel.findByIdAndDelete(id);
-  
+
   return deletedRecipe;
-}
+};
 export default {
   create,
   update,
@@ -261,5 +261,5 @@ export default {
   getAll,
   getByName,
   getByUser,
-  deleteRecipe
+  deleteRecipe,
 };

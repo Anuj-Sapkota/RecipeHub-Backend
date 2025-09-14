@@ -10,14 +10,12 @@ const createRecipe = async (req, res) => {
 
     res.status(201).json(data);
   } catch (error) {
-
     // Handling duplicate recipe title for the same user
     if (error.code === 11000) {
       return res.status(400).send("You already have a recipe with that title!");
     } else {
       res.status(500).send(error.message);
     }
-
   }
 };
 
@@ -39,7 +37,6 @@ const updateRecipe = async (req, res) => {
 
 //get Recipe by ID
 const getRecipeById = async (req, res) => {
-
   try {
     const { id } = req.params;
     const recipe = await recipeService.getById(id);
@@ -56,7 +53,6 @@ const getRecipeById = async (req, res) => {
 // rate recipes
 
 const rateRecipe = async (req, res) => {
-
   try {
     const { id } = req.params; // recipe id
     const { rating } = req.body; // rating value
@@ -70,7 +66,6 @@ const rateRecipe = async (req, res) => {
   }
 };
 const getAllRecipes = async (req, res) => {
-
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 15;
@@ -83,7 +78,6 @@ const getAllRecipes = async (req, res) => {
 };
 
 const getByName = async (req, res) => {
-  
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 15;
@@ -96,7 +90,6 @@ const getByName = async (req, res) => {
 };
 
 const getByUser = async (req, res) => {
-
   try {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 15;
@@ -120,7 +113,7 @@ const deleteRecipe = async (req, res) => {
   } catch (error) {
     res.status(500).send(error.message);
   }
-}
+};
 export default {
   createRecipe,
   updateRecipe,
@@ -129,5 +122,5 @@ export default {
   getByUser,
   getByName,
   getAllRecipes,
-  deleteRecipe
+  deleteRecipe,
 };
