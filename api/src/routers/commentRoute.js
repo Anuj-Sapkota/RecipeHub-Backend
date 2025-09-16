@@ -7,6 +7,9 @@ const router = express.Router();
 // Create a new comment for a recipe (protected)
 router.post("/:recipeId/comments", auth, commentController.createComment);
 
+// Get all comments for logged in user
+router.get("/comments/me", auth, commentController.getLoggedInUserComments);
+
 // Get all comments for a specific recipe
 router.get("/:recipeId/comments", commentController.getCommentsByRecipeId);
 
