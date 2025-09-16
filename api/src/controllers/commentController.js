@@ -1,7 +1,6 @@
 import commentService from "../services/commentService.js";
 
 const createComment = async (req, res) => {
-
   try {
     const { recipeId } = req.params;
     const { content } = req.body;
@@ -16,7 +15,6 @@ const createComment = async (req, res) => {
 };
 
 const getCommentsByRecipeId = async (req, res) => {
-
   try {
     const { recipeId } = req.params;
     const page = parseInt(req.query.page) || 1;
@@ -30,13 +28,16 @@ const getCommentsByRecipeId = async (req, res) => {
 };
 
 const updateComment = async (req, res) => {
-
   try {
     const { commentId } = req.params;
     const { content } = req.body;
     const userId = req.user._id;
 
-    const updatedComment = await commentService.update(commentId, userId, content);
+    const updatedComment = await commentService.update(
+      commentId,
+      userId,
+      content
+    );
 
     res.status(200).json(updatedComment);
   } catch (error) {
@@ -45,7 +46,6 @@ const updateComment = async (req, res) => {
 };
 
 const deleteComment = async (req, res) => {
-  
   try {
     const { commentId } = req.params;
     const userId = req.user._id;
