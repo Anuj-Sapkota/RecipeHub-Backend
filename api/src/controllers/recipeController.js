@@ -1,4 +1,5 @@
 import recipeService from "../services/recipeService.js";
+import userService from "../services/userService.js";
 
 const createRecipe = async (req, res) => {
   const input = req.body;
@@ -114,6 +115,21 @@ const deleteRecipe = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+
+//get the recipes according to the logged in user
+const getCurrentUserRecipes = async (req, res) => {
+  try {
+    const currUser = req.user;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 15;
+    const data = await recipeService.getMe(currUser, page, limit);
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 export default {
   createRecipe,
   updateRecipe,
@@ -123,4 +139,5 @@ export default {
   getByName,
   getAllRecipes,
   deleteRecipe,
+  getCurrentUserRecipes,
 };

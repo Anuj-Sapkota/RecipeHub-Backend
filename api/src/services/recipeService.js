@@ -7,20 +7,6 @@ import geminiReply from "../utils/gemini.js";
 import cloudinary from "cloudinary";
 
 const create = async (data, file, createdBy) => {
-  let uploadedImage = "";
-
-  if (file) {
-    // generating a filename based on the recipe title
-    const rawFileName = data.title;
-    // random string for uniqueness in filename
-    const randomStr = Math.random().toString(36).substring(2, 7); // 5 chars
-    const filename = (
-      rawFileName.replace(/\s+/g, "-") +
-      "-" +
-      randomStr
-    ).toLowerCase();
-    uploadedImage = await uploadImages(file, filename);
-  }
   //checking if the category exists or not
   const categoryExists = await categoryModel.findById(data.category);
 
@@ -55,13 +41,9 @@ const create = async (data, file, createdBy) => {
     geminiReply(nutrientsPrompt),
     geminiReply(descriptionPrompt),
   ]);
-
-  const createdRecipe = await RecipeModel.create({
+  const recipe = await RecipeModel.create({
     ...data,
     createdBy: createdBy._id,
-    image: uploadedImage
-      ? { url: uploadedImage.secure_url, public_id: uploadedImage.public_id }
-      : { url: "", public_id: "" },
     nutrients:
       data.nutrients ??
       nutrientsResponse
@@ -69,9 +51,21 @@ const create = async (data, file, createdBy) => {
         .map((item) => item.trim())
         .filter((item) => item),
     description: data.description ?? descriptionResponse,
+    image: { url: "", public_id: "" }, //placeholder
   });
 
-  return createdRecipe;
+  if (file) {
+    // random string for uniqueness in filename
+    const filename = recipe._id.toString();
+    const uploadedImage = await uploadImages(file, filename);
+
+    recipe.image = {
+      url: uploadedImage.secure_url,
+      public_id: uploadedImage.public_id,
+    };
+    await recipe.save();
+  }
+  return recipe;
 };
 
 // Update Recipes
@@ -96,24 +90,18 @@ const update = async (data, file, user, recipeId) => {
       await cloudinary.uploader.destroy(recipe.image.public_id);
     }
 
-    //taking the name from the title
-    const rawFileName = data.title ?? recipe.title;
-    // random string for uniqueness in filename
-    const randomStr = Math.random().toString(36).substring(2, 7); // 5 chars
-    const filename = (
-      rawFileName.replace(/\s+/g, "-") +
-      "-" +
-      randomStr
-    ).toLowerCase();
+    const filename = recipe._id.toString();
+
     uploadedImage = await uploadImages(file, filename);
   }
 
-  const recipeExists = await RecipeModel.findById(recipeId);
   const updatedRecipe = await RecipeModel.findByIdAndUpdate(
     recipeId,
     {
       ...data,
-      image: uploadedImage ? uploadedImage.secure_url : recipeExists.image,
+      image: uploadedImage
+        ? { url: uploadedImage.secure_url, public_id: uploadedImage.public_id }
+        : recipe.image,
     },
     { new: true }
   );
@@ -253,6 +241,26 @@ const deleteRecipe = async (id) => {
 
   return deletedRecipe;
 };
+
+//get created recipe by the logged in user
+const getMe = async (currUser, page, limit) => {
+  const skip = (page - 1) * limit;
+
+  const recipe = await RecipeModel.find({
+    createdBy: currUser._id,
+  });
+  const recipeIds = recipe.map((recipe) => recipe._id);
+
+  const recipes = await RecipeModel.find({ _id: { $in: recipeIds } })
+    .skip(skip)
+    .limit(limit);
+
+  if (recipes.length === 0) {
+    throw new Error("No Recipes Created.");
+  }
+
+  return recipes;
+};
 export default {
   create,
   update,
@@ -262,4 +270,5 @@ export default {
   getByName,
   getByUser,
   deleteRecipe,
+  getMe,
 };

@@ -58,9 +58,28 @@ const deleteComment = async (req, res) => {
   }
 };
 
+//get comment by current user
+const getLoggedInUserComments = async (req, res) => {
+  try {
+    const currUser = req.user;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 15;
+    
+    const data = await commentService.getCurrentUserComments(
+      currUser,
+      page,
+      limit
+    );
+
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
 export default {
   createComment,
   getCommentsByRecipeId,
   updateComment,
   deleteComment,
+  getLoggedInUserComments,
 };

@@ -67,9 +67,30 @@ const remove = async (commentId, userId) => {
   await CommentModel.findByIdAndDelete(commentId);
 };
 
+//get comments of logged in user
+const getCurrentUserComments = async (currUser, page, limit) => {
+  const skip = (page - 1) * limit;
+
+  const comment = await CommentModel.find({
+    user: currUser._id,
+  });
+  const commentIds = comment.map((comm) => comm._id);
+
+  const comments = await CommentModel.find({ _id: { $in: commentIds } })
+    .skip(skip)
+    .limit(limit);
+
+  if (comments.length === 0) {
+    throw new Error("No Comments Made.");
+  }
+
+  return comments;
+};
+
 export default {
   create,
   getByRecipeId,
   update,
   remove,
+  getCurrentUserComments
 };
