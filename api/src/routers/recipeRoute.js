@@ -9,6 +9,9 @@ router.post("/", recipeController.createRecipe);
 // Rate a recipe (protected)
 router.post("/:id/rate", auth, recipeController.rateRecipe);
 
+//Update a recipe
+router.put("/:id", recipeController.updateRecipe);
+
 // Get all recipes
 router.get("/", recipeController.getAllRecipes);
 
@@ -18,10 +21,15 @@ router.get("/user/:name", auth, recipeController.getByUser);
 // Get recipe by name
 router.get("/name/:name", recipeController.getByName);
 
+//get the logged in user created recipes
+router.get("/me", auth, recipeController.getCurrentUserRecipes);
+
 // Get recipe by id
 router.get("/:id", recipeController.getRecipeById);
 
 //delete recipe
 router.delete("/:id", auth, recipeController.deleteRecipe);
+
+
 
 export default router;
