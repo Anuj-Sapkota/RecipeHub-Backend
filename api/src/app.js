@@ -10,6 +10,7 @@ import categoryRoute from "./routers/categoryRoute.js";
 import favoriteRoute from "./routers/favoriteRoute.js";
 import userRoute from "./routers/userRoute.js";
 import commentRoute from "./routers/commentRoute.js";
+import adminRoute from './routers/adminRoute.js'
 import connectCloudinary from "./config/cloudinary.js";
 import multer from "multer";
 import auth from "./middlewares/auth.js";
@@ -44,6 +45,9 @@ app.use("/api/user", auth, upload.single("profileImage"), userRoute);
 
 // Comments
 app.use("/api/recipes", auth, commentRoute);
+
+//admin
+app.use("/api/admin", auth, adminRoute);
 
 app.listen(config.port, () => {
   console.log(`Server running at port: ${config.port}....`);
