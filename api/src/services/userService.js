@@ -92,7 +92,7 @@ const remove = async (userId, currUser) => {
 // get the current user data
 const getMe = async (currUser) => {
   const user = await userModel
-    .findById(currUser._id)
+    .findById(currUser)
     .select("-password -profileImage.public_id");
 
   if (!user) {

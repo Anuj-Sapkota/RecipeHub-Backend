@@ -28,7 +28,7 @@ const deleteUser = async (req, res) => {
 // get the logged in user
 const getCurrentUser = async (req, res) => {
   try {
-    const currUser = req.user;
+    const currUser = req.user._id;
     const data = await userService.getMe(currUser);
 
     res.status(200).json(data);
