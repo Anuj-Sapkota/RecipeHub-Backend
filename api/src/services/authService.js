@@ -26,10 +26,15 @@ const login = async (data) => {
       statusCode: 400,
       message: "Please fill both email and password.",
     };
-
+  if (!userData) {
+    throw {
+      statusCode: 401,
+      message: "Incorrect email or password!",
+    };
+  }
   const isPasswordMatch = bcrypt.compareSync(data.password, userData.password); // Comparing hashed Password
 
-  if (!userData || !isPasswordMatch) {
+  if (!isPasswordMatch) {
     throw {
       statusCode: 401,
       message: "Incorrect email or password!",
