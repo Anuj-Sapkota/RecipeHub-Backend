@@ -15,7 +15,8 @@ const config = {
   gemini:{
     apiKey: process.env.GEMINI_API_KEY || "",
     apiUrl: process.env.GEMINI_API_URL || "",
-  }
+  },
+  appUrl: process.env.APP_URL,
 };
 
 export default config;

@@ -13,6 +13,7 @@ import commentRoute from "./routers/commentRoute.js";
 import adminRoute from './routers/adminRoute.js'
 import connectCloudinary from "./config/cloudinary.js";
 import multer from "multer";
+import cors from 'cors'
 import auth from "./middlewares/auth.js";
 
 const app = express();
@@ -27,7 +28,11 @@ connectCloudinary();
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(logger);
-
+app.use(
+  cors({
+    origin: config.appUrl,
+  })
+);
 // Auth
 app.use("/api/auth", authRoute);
 
