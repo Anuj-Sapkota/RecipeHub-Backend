@@ -24,6 +24,9 @@ router.get("/name/:name", recipeController.getByName);
 //get the logged in user created recipes
 router.get("/me", auth, recipeController.getCurrentUserRecipes);
 
+// get the top 5 recipes with greatest ratings
+router.get("/top", recipeController.getTopRecipes);
+
 // Get recipe by id
 router.get("/:id", recipeController.getRecipeById);
 
