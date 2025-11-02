@@ -41,6 +41,14 @@ const create = async (data, file, createdBy) => {
     geminiReply(nutrientsPrompt),
     geminiReply(descriptionPrompt),
   ]);
+  if (typeof data.ingredients === "string") {
+    try {
+      data.ingredients = JSON.parse(data.ingredients);
+    } catch (err) {
+      console.error("Error parsing ingredients:", err);
+    }
+  }
+
   const recipe = await RecipeModel.create({
     ...data,
     createdBy: createdBy._id,
@@ -261,6 +269,19 @@ const getMe = async (currUser, page, limit) => {
 
   return recipes;
 };
+
+const getTopRecipes = async () => {
+  const recipes = await RecipeModel.find().sort({ averageRating: -1 }).limit(5)
+    .populate("createdBy", "fullName profileImage")
+    .populate("category", "name image")
+
+
+  if (recipes.length === 0) {
+    throw new Error("No recipes found for this user");
+  }
+
+  return recipes;
+}
 export default {
   create,
   update,
@@ -271,4 +292,5 @@ export default {
   getByUser,
   deleteRecipe,
   getMe,
+  getTopRecipes
 };
